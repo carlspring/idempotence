@@ -14,7 +14,7 @@
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
 
-        <version.junit>5.10.3</version.junit>
+        <version.junit>5.11.0</version.junit>
         <version.spring>6.1.11</version.spring>
     </properties>
 
