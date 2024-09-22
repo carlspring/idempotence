@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <!-- reset all previous level configurations of all j.u.l. loggers -->
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <!--
+    <springProperty scope="context" name="debug" source="logging.debug" defaultValue="false"/>
+    <springProperty scope="context" name="console" source="logging.console.enabled" defaultValue="true"/>
+
+    <springProperty scope="context" name="loggingDir" source="logging.dir" defaultValue="logs"/>
+    <springProperty scope="context" name="loggingFile" source="logging.file" defaultValue="logs/idempotence"/>
+
+    <springProperty scope="context" name="file" source="logging.file.enabled" defaultValue="true"/>
+    <springProperty scope="context" name="fileHistory" source="logging.file.history" defaultValue="31"/>
+    <springProperty scope="context" name="fileSizeSingle" source="logging.file.size.single" defaultValue="128MB"/>
+    <springProperty scope="context" name="fileSizeTotal" source="logging.file.size.total" defaultValue="1GB"/>
+    -->
+
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS dd-MM-yyyy} | %-5.5p | %-20.20t | %-50.50logger{50} | %m%n</pattern>
+        </encoder>
+    </appender>
+
+<!--
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>logs/idempotence</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/accounting-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>10</totalSizeCap>
+        </rollingPolicy>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS dd-MM-yyyy} | %-5.5p | %-20.20t | %-50.50logger{50} | %m%n</pattern>
+        </encoder>
+    </appender>
+-->
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>idempotence</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS dd-MM-yyyy} | %-5.5p | %-20.20t | %-50.50logger{50} | %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Carlspring Accounting packages -->
+    <logger name="com.carlspring.accounting" level="DEBUG"/>
+    <!-- Carlspring Accounting packages -->
+
+    <!-- Third-party packages -->
+    <logger name="ch.qos.logback" level="ERROR"/>
+
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.springframework.web" level="ERROR"/>
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="ERROR" />
+    <logger name="org.springframework.http" level="DEBUG" />
+    <logger name="org.springframework.web.client" level="DEBUG" />
+    <!-- Third-party packages -->
+
+    <root>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+
+        <level value="ERROR"/>
+    </root>
+
+</configuration>

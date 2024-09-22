@@ -14,11 +14,11 @@ Enter, `idempotence`.
 
 Common test resources are stored under the `src/test/resources` directory.
 
-Each test case has its own test resources directory in the format `${testName}-${testMethod}` under the
+Each test case has its own test resources directory in the format `${testName}/${testMethod}` under the
 `target/test-resources` directory like this:
 ```
-target/test-resources/BasicFunctionalityTest-testMultipleWithPatterns
-target/test-resources/BasicFunctionalityTest-testSingleFile
+target/test-resources/BasicFunctionalityTest/testMultipleWithPatterns
+target/test-resources/BasicFunctionalityTest/testSingleFile
 ```
 
 Test methods are annotated with the `@TestResources` annotation to specify the resources that they need. For example:
@@ -40,8 +40,8 @@ src/test/resources/nested/dir/foo.txt
 
 These test resources will be placed under:
 ```
-target/test-resources/BasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt
-target/test-resources/BasicFunctionalityTest-testMultipleWithPatterns/foo.txt
+target/test-resources/BasicFunctionalityTest/testMultipleWithPatterns/nested/dir/foo.txt
+target/test-resources/BasicFunctionalityTest/testMultipleWithPatterns/foo.txt
 ```
 
 At this point you need to make sure your tests look for the test resources in their isolated directories.

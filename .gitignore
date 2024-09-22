@@ -1,0 +1,43 @@
+# common ignore
+*~
+MANIFEST.MF
+build/
+out/
+target/
+tmp/
+*.versionsBackup
+.m2/
+
+# Java Files #
+!gradle-wrapper.jar
+*.jar
+*.war
+*.class
+
+# eclipse specific
+.settings
+.project
+.classpath
+.metadata
+.factorypath
+
+# idea specific
+.idea/*
+!.idea/codeStyleSettings.xml
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# unix specific
+.DS_Store
+.directory
+
+# static plugins
+.pmd
+
+# log files
+logs/
+*.log
+
+lib/*
+.idea
