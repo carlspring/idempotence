@@ -5,13 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.carlspring.testing</groupId>
+        <groupId>org.carlspring.testing.idempotence</groupId>
         <artifactId>idempotence-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>idempotence-parent</relativePath>
     </parent>
 
-    <artifactId>idempotence</artifactId>
+    <groupId>org.carlspring.testing.idempotence</groupId>
+    <artifactId>idempotence-masterbuild</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -22,5 +23,52 @@
         <module>idempotence-gradle</module>
         <module>idempotence-gradle-integration-tests</module>
     </modules>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>carlspring</id>
+            <name>Martin Todorov</name>
+            <email>carlspring@gmail.com</email>
+            <url>https://github.com/carlspring</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/carlspring/idempotence</url>
+        <connection>scm:git:git://github.com/carlspring/idempotence.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:carlspring/idempotence.git</developerConnection>
+        <tag>${project.version}</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/carlspring/idempotence/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>GitHub Actions</system>
+        <url>https://github.com/carlspring/idempotence/actions</url>
+    </ciManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>Maven Central Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>central</id>
+            <name>Maven Central Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

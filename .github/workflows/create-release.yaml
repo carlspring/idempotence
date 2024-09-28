@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Ensure all history and tags are fetched
 
@@ -116,7 +116,7 @@ jobs:
 
       - name: Update POM Version to Release Version
         run: |
-          mvn versions:set -DnewVersion=${{ steps.determine_version.outputs.release_version }} -DgenerateBackupPoms=false
+          mvn versions:set -DnewVersion=${{ steps.determine_version.outputs.release_version }} -DprocessAllModules=true -DgenerateBackupPoms=false
 
       - name: Commit Release Version
         run: |
@@ -125,12 +125,12 @@ jobs:
           git commit -am "Release version ${{ steps.determine_version.outputs.release_version }}"
 
       - name: Build and Deploy Artifacts
-        run: |
-           mvn -s ./.github/settings.xml clean deploy -DskipTests=false
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           MAVEN_CENTRAL_GPG_PASSPHRASE: ${{ secrets.MAVEN_CENTRAL_GPG_PASSPHRASE }}
+        run: |
+           mvn -s ./.github/settings.xml clean deploy -DskipTests=false
 
       - name: Create Git Tag
         run: |
@@ -138,8 +138,13 @@ jobs:
           git push origin ${{ steps.determine_version.outputs.release_version }}
 
       - name: Update POM Version to Next Development Version
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          MAVEN_CENTRAL_GPG_PASSPHRASE: ${{ secrets.MAVEN_CENTRAL_GPG_PASSPHRASE }}
         run: |
-          mvn versions:set -DnewVersion=${{ steps.determine_next_version.outputs.next_development_version }} -DgenerateBackupPoms=false
+          mvn versions:set -DnewVersion=${{ steps.determine_next_version.outputs.next_development_version }} -DprocessAllModules=true -DgenerateBackupPoms=false
+          mvn -s ./.github/settings.xml clean deploy -DskipTests=false
 
       - name: Commit Next Development Version
         run: |
