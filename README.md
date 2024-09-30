@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="docs/resources/images/idempotence-4-1.webp" />
+  <img src="docs/assets/images/idempotence-4-1.webp" />
 </p>
 
 # Problem Statement
