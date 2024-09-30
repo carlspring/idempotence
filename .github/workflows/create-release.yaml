@@ -152,7 +152,7 @@ jobs:
           git push origin HEAD:${{ github.ref }}
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.determine_version.outputs.release_version }}
           name: ${{ steps.determine_version.outputs.release_version }}
