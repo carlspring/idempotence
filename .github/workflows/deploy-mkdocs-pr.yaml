@@ -3,6 +3,8 @@ name: Deploy MkDocs site to Netlify on PR
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    paths:
+      - 'docs/**/**'
 
 permissions:
   contents: read

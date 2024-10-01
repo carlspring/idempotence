@@ -1,11 +1,11 @@
 name: Deploy MkDocs Site
 
 on:
-  workflow_dispatch:
-    inputs:
-      VERSION:
-        description: 'Version to checkout'
-        required: true
+  push:
+    branches:
+      - master
+    paths:
+      - 'docs/**/**'
 
 permissions:
   pages: write      # to deploy to Pages
@@ -29,12 +29,14 @@ jobs:
 
       - name: Create tar archive of site
         working-directory: docs
-        run: tar -cf site.tar -C site .
+        run: |
+          tar -cf site.tar -C site .
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./site.tar
+          path: ./docs/site/
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
+

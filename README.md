@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="docs/assets/images/idempotence-4-1.webp" />
+  <img src="docs/content/assets/images/idempotence-4-1.webp" />
 </p>
 
 Welcome to the Idempotence project!
