@@ -2,6 +2,7 @@
 
 This Maven module is the parent module for the Idempotence project.
 It contains the common configuration for all the other modules in the project, such as:
+
 * Dependency management
 * Plugin management
 * Common properties
