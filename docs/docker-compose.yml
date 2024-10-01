@@ -1,0 +1,22 @@
+version: '3'
+services:
+  serve:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: squidfunk/mkdocs-material:custom
+    container_name: idempotence-docs
+    working_dir: /workspace/docs
+    volumes:
+      - ../:/workspace
+    ports:
+      - 8000:8000
+  build:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: squidfunk/mkdocs-material:custom
+    working_dir: /workspace/docs
+    command: [ "build" ]
+    volumes:
+      - ../:/workspace

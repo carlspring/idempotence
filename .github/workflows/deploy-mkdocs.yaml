@@ -1,32 +1,34 @@
 name: Deploy MkDocs Site
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      VERSION:
+        description: 'Version to checkout'
+        required: true
+
+permissions:
+  pages: write      # to deploy to Pages
+  id-token: write   # to verify the deployment originates from an appropriate source
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          ref: ${{ github.event.inputs.VERSION }}
 
-      - name: Install MkDocs and dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Build MkDocs site
-        run: mkdocs build
+      - name: Build docs
+        working-directory: docs
+        run: docker compose run build
 
       - name: Create tar archive of site
+        working-directory: docs
         run: tar -cf site.tar -C site .
 
       - name: Upload artifact for GitHub Pages
@@ -34,13 +36,5 @@ jobs:
         with:
           path: ./site.tar
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-
-    steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1

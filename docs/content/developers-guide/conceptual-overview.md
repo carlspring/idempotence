@@ -1,7 +1,7 @@
 # Conceptual Overview
 
 <p align="center">
-  <img src="../assets/images/idempotence-4-1.webp" />
+  <img src="../../assets/images/idempotence-4-1.webp" />
 </p>
 
 ## Problem Statement

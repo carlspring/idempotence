@@ -1,19 +1,13 @@
 site_name: Idempotence Knowledge Base
 site_url: https://carlspring.github.io/idempotence/
 repo_url: https://github.com/carlspring/idempotence
-use_directory_urls: false
+#use_directory_urls: false
 
-markdown_extensions:
-  - admonition
-  - footnotes
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
+docs_dir: content
 
 theme:
   name: material
-  logo: assets/images/
+  #logo: assets/images/
 
   icon:
     repo: fontawesome/brands/github
@@ -32,6 +26,7 @@ theme:
     - search.highlight
     - search.share
     - search.suggest
+
   palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
@@ -47,3 +42,15 @@ theme:
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
