@@ -1,0 +1,40 @@
+name: Deploy MkDocs Site
+
+on:
+  workflow_dispatch:
+    inputs:
+      VERSION:
+        description: 'Version to checkout'
+        required: true
+
+permissions:
+  pages: write      # to deploy to Pages
+  id-token: write   # to verify the deployment originates from an appropriate source
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.VERSION }}
+
+      - name: Build docs
+        working-directory: docs
+        run: docker compose run build
+
+      - name: Create tar archive of site
+        working-directory: docs
+        run: tar -cf site.tar -C site .
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./site.tar
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1

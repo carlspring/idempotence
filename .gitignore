@@ -41,3 +41,6 @@ logs/
 
 lib/*
 .idea
+
+# mkdocs
+site/
