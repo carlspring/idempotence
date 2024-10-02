@@ -5,10 +5,12 @@ on:
     branches: [ master ]
     paths:
       - '**/*.java'
+      - '.github/workflows/codeql.yaml'
   pull_request:
     branches: [ master ]
     paths:
       - '**/*.java'
+      - '.github/workflows/codeql.yaml'
   schedule:
     - cron: '0 1 * * *' # daily at 1am UTC
 
@@ -30,33 +32,33 @@ jobs:
       - name: Check for Java file changes
         id: java_changes
         run: |
-          git fetch origin master --prune --unshallow
+          git fetch origin master --prune
           if git diff --name-only HEAD HEAD~1 | grep -E '\.java$'; then
             echo "Java files have changed."
-            echo "::set-output name=java_changed::true"
+            echo "java_changed=true" >> $GITHUB_ENV
           else
             echo "No Java file changes detected."
-            echo "::set-output name=java_changed::false"
+            echo "java_changed=false" >> $GITHUB_ENV
           fi
 
       - name: Setup JDK 22
-        if: steps.java_changes.outputs.java_changed == 'true'
+        if: env.java_changed == 'true'
         uses: actions/setup-java@v4
         with:
-          distribution: 'oracle'
-          java-version: '22'
           cache: 'maven'
+          distribution: 'temurin'
+          java-version: '22'
 
       - name: Initialize CodeQL
-        if: steps.java_changes.outputs.java_changed == 'true'
+        if: env.java_changed == 'true'
         uses: github/codeql-action/init@v3
         with:
           languages: 'java'
 
       - name: Autobuild
-        if: steps.java_changes.outputs.java_changed == 'true'
+        if: env.java_changed == 'true'
         run: mvn -B package --file pom.xml
 
       - name: Perform CodeQL Analysis
-        if: steps.java_changes.outputs.java_changed == 'true'
+        if: env.java_changed == 'true'
         uses: github/codeql-action/analyze@v2
