@@ -130,7 +130,7 @@ jobs:
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           MAVEN_CENTRAL_GPG_PASSPHRASE: ${{ secrets.MAVEN_CENTRAL_GPG_PASSPHRASE }}
         run: |
-           mvn -s ./.github/settings.xml clean deploy -DskipTests=false
+           mvn -s ./.github/settings.xml clean deploy -DskipTests=false -Pgpg
 
       - name: Create Git Tag
         run: |
@@ -144,7 +144,7 @@ jobs:
           MAVEN_CENTRAL_GPG_PASSPHRASE: ${{ secrets.MAVEN_CENTRAL_GPG_PASSPHRASE }}
         run: |
           mvn versions:set -DnewVersion=${{ steps.determine_next_version.outputs.next_development_version }} -DprocessAllModules=true -DgenerateBackupPoms=false
-          mvn -s ./.github/settings.xml clean deploy -DskipTests=false
+          mvn -s ./.github/settings.xml clean deploy -DskipTests=false -Pgpg
 
       - name: Commit Next Development Version
         run: |
