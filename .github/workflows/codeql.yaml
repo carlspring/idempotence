@@ -61,4 +61,4 @@ jobs:
 
       - name: Perform CodeQL Analysis
         if: env.java_changed == 'true'
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3
