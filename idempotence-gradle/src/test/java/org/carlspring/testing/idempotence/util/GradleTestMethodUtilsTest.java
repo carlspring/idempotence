@@ -24,7 +24,7 @@ class GradleTestMethodUtilsTest
 
         assertEquals("GradleTestMethodUtilsTest", details.getClassName());
         assertEquals("testMethodsDefault", details.getMethodName());
-        assertEquals("build/test-resources/GradleTestMethodUtilsTest/testMethodsDefault",
+        assertEquals("build/test-resources/GradleTestMethodUtilsTest-testMethodsDefault",
                      details.getPathToMethodTestResources());
     }
 
@@ -41,7 +41,7 @@ class GradleTestMethodUtilsTest
 
             assertEquals("org/carlspring/testing/idempotence/util/GradleTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithFQDNPath", details.getMethodName());
-            assertEquals("build/test-resources/org/carlspring/testing/idempotence/util/GradleTestMethodUtilsTest/testMethodsWithFQDNPath",
+            assertEquals("build/test-resources/org/carlspring/testing/idempotence/util/GradleTestMethodUtilsTest-testMethodsWithFQDNPath",
                          details.getPathToMethodTestResources());
         }
         finally
