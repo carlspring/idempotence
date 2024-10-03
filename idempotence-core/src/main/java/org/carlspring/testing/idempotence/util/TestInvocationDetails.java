@@ -29,7 +29,7 @@ public class TestInvocationDetails
 
     public String getPathToMethodTestResources()
     {
-        return getBaseDir() + "/" + getClassNameString() + "/" + methodName;
+        return getBaseDir() + "/" + getClassNameString() + "-" + methodName;
     }
 
     private String getBaseDir()
