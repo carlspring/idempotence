@@ -6,19 +6,42 @@
 
 ## Problem Statement
 
-You need a simple framework that guarantees that your test resources are independent for each test case,
-so that you can run your tests in parallel without any side effects and get consistent results.
+A common challenge when running tests in parallel is test interference, which often leads to inconsistent or unreliable
+results. This problem arises primarily when tests share resources, such as files, databases, or other external services.
+When multiple tests attempt to access or modify these shared resources simultaneously, they can conflict, causing tests
+to fail randomly and in unexpected and hard to reproduce and debug ways. 
 
-Enter, `idempotence`.
+To mitigate this, it's essential to ensure that each test has exclusive access to the resources it requires.
+One effective approach is to create isolated environments for each test case by copying the necessary shared resources
+into separate directories or instances. By doing so, you ensure that each test can operate independently, free from the
+influence of other tests running in parallel. This guarantees that any changes or manipulations performed by one test
+do not affect the execution or results of another.
+
+A crucial aspect of this process is being able to identify and explicitly define the resources that need isolation.
+If a test can correctly list the resource files, services, or external dependencies it interacts with, you can ensure
+those resources are appropriately isolated for that specific test case and thus achieve idempotence.
+This allows tests to run concurrently without side effects.
+
+This is where the concept of idempotence becomes key. By designing your tests and their associated resource management
+with idempotence in mind, you ensure that no matter how many times a test is run or how many tests are executed
+simultaneously, the outcome remains consistent. Each test will be self-contained, repeatable, and immune to external
+interference—allowing you to harness the full power of parallel execution without compromising reliability.
+
+The Idempotence framework is a Java testing library that provides the tools and utilities to help you achieve this.
 
 ## Concept
 
-Common test resources are stored under the `src/test/resources` directory.
+All common test resources are stored under the `src/test/resources` directory as usual.
+
+Each test method defines the resources it needs by annotating it with the `@TestResources` annotation. The framework
+copies these resources to an isolated directory for the test to use. This ensures that the test has exclusive access
+to the resources it requires, preventing interference from other tests running in parallel.
 
 !!! note
 
-    It is important that these resources must not be altered by the tests in any way; they should instead only serve as
-    "read-only" resources that can be copied by the tests to their own isolated directories.
+    It is important that these common test resources are not altered by the tests in any way.
+    They should instead only serve as "read-only" resources that can be copied by the tests
+    to their own isolated directories.
 
 ### Extensions
 
