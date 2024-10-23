@@ -54,6 +54,11 @@
             <artifactId>idempotence-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.carlspring.testing.idempotence</groupId>
+            <artifactId>idempotence-db</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>

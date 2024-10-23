@@ -1,0 +1,23 @@
+#
+# Before starting run:
+#   mkdir pgdata && sudo chown root:root pgdata
+#
+# Run postgres and the app in separate containers:
+#   docker-compose up
+#
+# Run only postgres:
+#   docker-compose up -d postgres
+#
+
+version: "3.7"
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data

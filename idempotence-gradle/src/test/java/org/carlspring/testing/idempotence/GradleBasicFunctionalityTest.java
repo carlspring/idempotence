@@ -5,15 +5,10 @@ import org.carlspring.testing.idempotence.annotation.TestResources;
 import org.carlspring.testing.idempotence.extension.TestResourceExtension;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
 /**
  * @author carlspring

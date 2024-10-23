@@ -23,6 +23,7 @@
     <modules>
         <module>idempotence-parent</module>
         <module>idempotence-core</module>
+        <module>idempotence-db</module>
         <module>idempotence-maven</module>
         <module>idempotence-gradle</module>
         <module>idempotence-gradle-integration-tests</module>

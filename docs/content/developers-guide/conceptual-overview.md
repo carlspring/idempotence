@@ -82,7 +82,7 @@ src/test/resources/nested/dir/foo.txt
   they will be placed under:
 ```
 build/test-resources/GradleBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt
-build/test-resources/GradleBasicFunctionalityTest-testMultipleWithPatterns/testMultipleWithPatterns/foo.txt
+build/test-resources/GradleBasicFunctionalityTest-testMultipleWithPatterns/foo.txt
 ```
 
 * For a Maven project, with a test called `MavenBasicFunctionalityTest` with a method `testMultipleWithPatterns`,
