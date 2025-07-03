@@ -21,7 +21,7 @@
 
         <version.junit>5.13.2</version.junit>
         <version.logback>1.5.17</version.logback>
-        <version.slf4j>2.0.16</version.slf4j>
+        <version.slf4j>2.0.17</version.slf4j>
         <version.spring>6.1.11</version.spring>
         <version.spring.boot>3.4.3</version.spring.boot>
     </properties>
