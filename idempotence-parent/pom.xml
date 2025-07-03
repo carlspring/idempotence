@@ -23,7 +23,7 @@
         <version.logback>1.5.17</version.logback>
         <version.slf4j>2.0.16</version.slf4j>
         <version.spring>6.1.11</version.spring>
-        <version.spring.boot>3.4.0</version.spring.boot>
+        <version.spring.boot>3.4.3</version.spring.boot>
     </properties>
 
     <build>
