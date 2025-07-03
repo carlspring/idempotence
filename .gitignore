@@ -11,6 +11,7 @@ tmp/
 # Java Files #
 !gradle-wrapper.jar
 *.jar
+!.mvn/wrapper/maven-wrapper.jar
 *.war
 *.class
 
