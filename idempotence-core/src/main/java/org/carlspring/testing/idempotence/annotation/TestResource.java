@@ -8,7 +8,7 @@ public @interface TestResource
 
     String source();
 
-    String dest() default "";
+    String destinationDir() default "";
 
     boolean flatten() default false;
 

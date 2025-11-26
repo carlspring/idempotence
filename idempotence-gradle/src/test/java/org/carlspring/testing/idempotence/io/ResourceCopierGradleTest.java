@@ -42,7 +42,7 @@ class ResourceCopierGradleTest
             }
 
             @Override
-            public String dest()
+            public String destinationDir()
             {
                 return "";
             }

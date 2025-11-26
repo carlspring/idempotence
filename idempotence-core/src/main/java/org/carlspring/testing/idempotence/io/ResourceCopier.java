@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import org.slf4j.Logger;
@@ -32,19 +33,12 @@ public class ResourceCopier
     }
 
     public void copyResources(TestResource[] testResources, String testResourceDir)
-            throws IOException, URISyntaxException
+            throws IOException
     {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        File destinationDir = new File(resourceBasePath, testResourceDir);
-        if (!destinationDir.exists())
-        {
-            //noinspection ResultOfMethodCallIgnored
-            destinationDir.mkdirs();
-        }
-
         for (TestResource testResource : testResources)
         {
-            logger.debug("testResource: " + testResource.source());
+            logger.debug("testResource: {}", testResource.source());
 
             String sourcePath = testResource.source();
             boolean flatten = testResource.flatten();
@@ -57,17 +51,41 @@ public class ResourceCopier
                 {
                     File file = resource.getFile();
 
+                    File destinationDir = new File(resourceBasePath,
+                                                   !testResource.destinationDir().isEmpty() ?
+                                                   testResourceDir + File.separatorChar + testResource.destinationDir() :
+                                                   testResourceDir);
+                    if (!destinationDir.exists())
+                    {
+                        //noinspection ResultOfMethodCallIgnored
+                        destinationDir.mkdirs();
+                    }
+
                     String targetDir = resourceBasePath + "/" + testResourceDir;
                     String relativePath = null;
                     if (resource instanceof ClassPathResource)
                     {
                         ClassPathResource classPathResource = (ClassPathResource) resource;
-                        relativePath = pathTransformer.relativize(classPathResource.getFile().toPath()).toString();
+                        if (testResource.destinationDir().isEmpty())
+                        {
+                            relativePath = pathTransformer.relativize(classPathResource.getFile().toPath()).toString();
+                        }
+                        else
+                        {
+                            relativePath = pathTransformer.relativize(Paths.get(classPathResource.getFile().getName())).toString();
+                        }
                     }
                     else
                     {
                         FileSystemResource fileSystemResource = (FileSystemResource) resource;
-                        relativePath = pathTransformer.relativize(fileSystemResource.getFile().toPath()).toString();
+                        if (testResource.destinationDir().isEmpty())
+                        {
+                            relativePath = pathTransformer.relativize(fileSystemResource.getFile().toPath()).toString();
+                        }
+                        else
+                        {
+                            relativePath = pathTransformer.relativize(Paths.get(fileSystemResource.getFile().getName())).toString();
+                        }
                     }
 
                     @SuppressWarnings("DataFlowIssue")
