@@ -39,6 +39,7 @@ tmp/
 # log files
 logs/
 *.log
+idempotence
 
 lib/*
 .idea
