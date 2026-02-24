@@ -54,4 +54,20 @@ class GradleBasicFunctionalityTest
         Assertions.assertTrue(testResource2.exists(), "Test resource file should exist!");
     }
 
+    @Test
+    @TestResources({ @TestResource(source = "classpath:/invoices/linkedin/*.pdf",
+                                   destinationDir = "Unprocessed/LinkedIn"),
+                     @TestResource(source = "classpath*:invoices/upwork/*.pdf",
+                                   destinationDir = "Unprocessed/Upwork") })
+    void testMultipleWithDestinationDir()
+    {
+        File linkedInInvoice = new File("build/test-resources/GradleBasicFunctionalityTest-testMultipleWithDestinationDir/Unprocessed/LinkedIn/invoice.pdf");
+
+        Assertions.assertTrue(linkedInInvoice.exists(), "LinkedIn invoice should have been copied to Unprocessed/LinkedIn!");
+
+        File upworkInvoice = new File("build/test-resources/GradleBasicFunctionalityTest-testMultipleWithDestinationDir/Unprocessed/Upwork/invoice.pdf");
+
+        Assertions.assertTrue(upworkInvoice.exists(), "Upwork invoice should have been copied to Unprocessed/Upwork!");
+    }
+
 }
