@@ -16,6 +16,13 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * JUnit Jupiter extension that copies test resources to the test resource directory
+ * before each test method is executed. It also cleans up the test resource directory
+ * before copying to ensure a clean, isolated environment.
+ *
+ * @author carlspring
+ */
 public class TestResourceExtension
         extends Object
         implements BeforeEachCallback, BeforeAllCallback
@@ -28,6 +35,9 @@ public class TestResourceExtension
                                                                                            .getBasedir());
 
 
+    /**
+     * Creates a new instance of {@link TestResourceExtension}.
+     */
     public TestResourceExtension()
     {
     }

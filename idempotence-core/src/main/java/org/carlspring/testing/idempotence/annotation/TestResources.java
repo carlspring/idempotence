@@ -6,6 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * Container annotation for {@link TestResource} that allows multiple test resources to be declared
+ * on a single test method or class.
+ *
  * @author carlspring
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -14,6 +17,11 @@ import java.lang.annotation.Target;
 public @interface TestResources
 {
 
+    /**
+     * The array of {@link TestResource} annotations.
+     *
+     * @return the array of test resources
+     */
     TestResource[] value();
 
 }

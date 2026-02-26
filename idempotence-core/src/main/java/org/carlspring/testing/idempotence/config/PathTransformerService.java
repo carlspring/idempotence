@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.ServiceLoader;
 
 /**
+ * Singleton service that loads and provides the {@link PathTransformer} implementation
+ * via the Java {@link java.util.ServiceLoader} mechanism.
+ *
  * @author carlspring
  */
 public class PathTransformerService
@@ -20,6 +23,11 @@ public class PathTransformerService
     {
     }
 
+    /**
+     * Returns the singleton instance of {@link PathTransformerService}.
+     *
+     * @return the singleton instance
+     */
     public static PathTransformerService getInstance()
     {
         if (instance == null)
@@ -51,12 +59,22 @@ public class PathTransformerService
         }
     }
 
+    /**
+     * Returns the loaded {@link PathTransformer} instance.
+     *
+     * @return the {@link PathTransformer} instance
+     */
     public PathTransformer getPathTransformer()
     {
         return pathTransformer;
     }
 
-    public void setIdempotenceProperties(PathTransformer pathTransformer)
+    /**
+     * Sets the {@link PathTransformer} instance to use.
+     *
+     * @param pathTransformer the {@link PathTransformer} instance to set
+     */
+    public void setPathTransformer(PathTransformer pathTransformer)
     {
         this.pathTransformer = pathTransformer;
     }

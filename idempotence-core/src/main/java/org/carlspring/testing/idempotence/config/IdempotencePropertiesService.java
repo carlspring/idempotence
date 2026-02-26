@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.ServiceLoader;
 
 /**
+ * Singleton service that loads and provides the {@link IdempotenceProperties} implementation
+ * via the Java {@link java.util.ServiceLoader} mechanism.
+ *
  * @author carlspring
  */
 public class IdempotencePropertiesService
@@ -18,6 +21,11 @@ public class IdempotencePropertiesService
     {
     }
 
+    /**
+     * Returns the singleton instance of {@link IdempotencePropertiesService}.
+     *
+     * @return the singleton instance
+     */
     public static IdempotencePropertiesService getInstance()
     {
         if (instance == null)
@@ -49,11 +57,21 @@ public class IdempotencePropertiesService
         }
     }
 
+    /**
+     * Returns the loaded {@link IdempotenceProperties} instance.
+     *
+     * @return the {@link IdempotenceProperties} instance
+     */
     public IdempotenceProperties getIdempotenceProperties()
     {
         return idempotenceProperties;
     }
 
+    /**
+     * Sets the {@link IdempotenceProperties} instance to use.
+     *
+     * @param idempotenceProperties the {@link IdempotenceProperties} instance to set
+     */
     public void setIdempotenceProperties(IdempotenceProperties idempotenceProperties)
     {
         this.idempotenceProperties = idempotenceProperties;
