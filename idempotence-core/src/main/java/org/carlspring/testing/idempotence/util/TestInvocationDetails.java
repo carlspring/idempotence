@@ -4,6 +4,9 @@ import org.carlspring.testing.idempotence.config.IdempotenceProperties;
 import org.carlspring.testing.idempotence.config.IdempotencePropertiesService;
 
 /**
+ * Holds details about the current test invocation, including the class name, method name,
+ * and the path to the test resource directory.
+ *
  * @author carlspring
  */
 public class TestInvocationDetails

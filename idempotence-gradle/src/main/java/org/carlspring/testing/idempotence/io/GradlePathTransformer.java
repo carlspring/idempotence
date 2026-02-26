@@ -23,6 +23,13 @@ public class GradlePathTransformer
 
 
     /**
+     * Creates a new instance of {@link GradlePathTransformer}.
+     */
+    public GradlePathTransformer()
+    {
+    }
+
+    /**
      * Transforms the resource path for the Gradle build output directory structure.
      *
      * @param basePath     the base path used as the reference for transformation

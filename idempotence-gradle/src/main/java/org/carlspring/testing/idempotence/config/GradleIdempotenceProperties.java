@@ -13,6 +13,10 @@ public class GradleIdempotenceProperties
         extends AbstractIdempotenceProperties
 {
 
+    /**
+     * The base directory where test resources will be copied to. Defaults to {@code build/test-resources}
+     * unless overridden by the {@code org.carlspring.testing.idempotence.basedir} system property.
+     */
     public String basedir = System.getProperty("org.carlspring.testing.idempotence.basedir") != null ?
                             System.getProperty("org.carlspring.testing.idempotence.basedir") :
                             "build/test-resources";

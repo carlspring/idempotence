@@ -1,0 +1,60 @@
+23:37:45.276 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | testResource: classpath:/foo.txt
+23:37:45.282 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: foo.txt
+23:37:45.282 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns
+23:37:45.282 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt
+23:37:45.283 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt...
+23:37:45.287 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | testResource: classpath:/**/foo.txt
+23:37:45.295 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: foo.txt
+23:37:45.295 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns
+23:37:45.295 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt
+23:37:45.296 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt...
+23:37:45.296 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: nested/dir/foo.txt
+23:37:45.297 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns
+23:37:45.297 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt
+23:37:45.297 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Creating parent directories for target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/nested/dir...
+23:37:45.297 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/nested/dir/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt...
+23:37:45.317 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | testResource: classpath:/foo.txt
+23:37:45.318 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: foo.txt
+23:37:45.318 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testSingleFile
+23:37:45.318 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testSingleFile/foo.txt
+23:37:45.318 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testSingleFile/foo.txt...
+23:37:45.325 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | testResource: classpath:/**/foo.txt
+23:37:45.329 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: foo.txt
+23:37:45.329 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testWithPatterns
+23:37:45.329 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/foo.txt
+23:37:45.329 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/foo.txt...
+23:37:45.330 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: nested/dir/foo.txt
+23:37:45.330 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testWithPatterns
+23:37:45.330 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/nested/dir/foo.txt
+23:37:45.330 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Creating parent directories for target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/nested/dir...
+23:37:45.330 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/nested/dir/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/nested/dir/foo.txt...
+23:38:35.557 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | testResource: classpath:/foo.txt
+23:38:35.563 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: foo.txt
+23:38:35.563 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns
+23:38:35.563 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt
+23:38:35.564 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt...
+23:38:35.568 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | testResource: classpath:/**/foo.txt
+23:38:35.576 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: foo.txt
+23:38:35.576 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns
+23:38:35.576 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt
+23:38:35.576 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt...
+23:38:35.577 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: nested/dir/foo.txt
+23:38:35.577 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns
+23:38:35.577 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt
+23:38:35.577 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Creating parent directories for target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/nested/dir...
+23:38:35.578 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/nested/dir/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt...
+23:38:35.599 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | testResource: classpath:/foo.txt
+23:38:35.599 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: foo.txt
+23:38:35.599 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testSingleFile
+23:38:35.599 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testSingleFile/foo.txt
+23:38:35.600 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testSingleFile/foo.txt...
+23:38:35.606 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | testResource: classpath:/**/foo.txt
+23:38:35.609 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: foo.txt
+23:38:35.610 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testWithPatterns
+23:38:35.610 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/foo.txt
+23:38:35.610 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/foo.txt...
+23:38:35.610 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | relativePath: nested/dir/foo.txt
+23:38:35.610 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | targetDir:    target/test-resources/MavenBasicFunctionalityTest-testWithPatterns
+23:38:35.610 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | destFile:     target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/nested/dir/foo.txt
+23:38:35.611 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Creating parent directories for target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/nested/dir...
+23:38:35.611 26-02-2026 | DEBUG | main                 | o.carlspring.testing.idempotence.io.ResourceCopier | Copying /home/runner/work/idempotence/idempotence/idempotence-maven/target/test-classes/nested/dir/foo.txt to target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/nested/dir/foo.txt...

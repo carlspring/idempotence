@@ -13,6 +13,13 @@ public class MavenPathTransformer
 {
 
     /**
+     * Creates a new instance of {@link MavenPathTransformer}.
+     */
+    public MavenPathTransformer()
+    {
+    }
+
+    /**
      * At present, this is a no-op method.
      *
      * @param basePath     the base path (unused)
