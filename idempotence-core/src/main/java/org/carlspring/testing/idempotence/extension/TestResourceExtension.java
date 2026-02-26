@@ -13,11 +13,15 @@ import java.util.Optional;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestResourceExtension
         extends Object
         implements BeforeEachCallback, BeforeAllCallback
 {
+
+    private static Logger logger = LoggerFactory.getLogger(TestResourceExtension.class);
 
     private ResourceCopier resourceCopier = new ResourceCopier(IdempotencePropertiesService.getInstance()
                                                                                            .getIdempotenceProperties()
@@ -67,7 +71,7 @@ public class TestResourceExtension
                                              BasicFileAttributes attrs)
                     throws IOException
             {
-                System.out.println("Removing '" + file + "'...");
+                logger.debug("Removing '" + file + "'...");
 
                 Files.deleteIfExists(file);
 
@@ -81,7 +85,8 @@ public class TestResourceExtension
             {
                 if (!dir.equals(testResourcesDirAsPath))
                 {
-                    System.out.println("Removing '" + dir + "'...");
+                    logger.debug("Removing '" + dir + "'...");
+
                     Files.deleteIfExists(dir);
                 }
 
