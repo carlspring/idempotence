@@ -4,8 +4,8 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
 	java
-	id("org.springframework.boot") version "3.3.2"
-	id("io.spring.dependency-management") version "1.1.4"
+	id("org.springframework.boot") version "3.5.6"
+	id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "org.carlspring.testing.idempotence"
@@ -35,6 +35,7 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+	testImplementation(enforcedPlatform("org.junit:junit-bom:6.0.3"))
 	testImplementation("org.junit.jupiter:junit-jupiter-api")
 	testImplementation("org.junit.jupiter:junit-jupiter-engine")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
