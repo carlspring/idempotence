@@ -4,8 +4,8 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
 	java
-	id("org.springframework.boot") version "3.3.2"
-	id("io.spring.dependency-management") version "1.1.4"
+	id("org.springframework.boot") version "3.5.6"
+	id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "org.carlspring.testing.idempotence"
