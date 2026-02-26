@@ -94,9 +94,9 @@ public class ResourceCopier
                     {
                         // This is really not the right way to be handling this, but gets you the required info
                         // with less of an effort than having to dig through the log file and it's easier to read.
-                        System.out.println("relativePath: " + relativePath);
-                        System.out.println("targetDir:    " + targetDir);
-                        System.out.println("destFile:     " + destFile);
+                        logger.debug("relativePath: {}", relativePath);
+                        logger.debug("targetDir:    {}", targetDir);
+                        logger.debug("destFile:     {}", destFile);
                     }
 
                     if (!destFile.getParentFile().exists())
