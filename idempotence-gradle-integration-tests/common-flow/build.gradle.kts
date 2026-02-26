@@ -35,9 +35,10 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-	testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.3")
-	testImplementation("org.junit.jupiter:junit-jupiter-engine:6.0.3")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.3")
+	testImplementation(enforcedPlatform("org.junit:junit-bom:6.0.3"))
+	testImplementation("org.junit.jupiter:junit-jupiter-api")
+	testImplementation("org.junit.jupiter:junit-jupiter-engine")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks {
