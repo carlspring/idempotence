@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
+ * Maven-specific implementation of {@link PathTransformer}.
+ *
  * @author carlspring
  */
 public class MavenPathTransformer
@@ -11,10 +13,18 @@ public class MavenPathTransformer
 {
 
     /**
+     * Creates a new instance of {@link MavenPathTransformer}.
+     */
+    public MavenPathTransformer()
+    {
+    }
+
+    /**
      * At present, this is a no-op method.
      *
-     * @param path
-     * @return
+     * @param basePath     the base path (unused)
+     * @param path         the resource path to transform
+     * @return the unchanged resource path
      */
     @Override
     public Path transform(Path basePath, Path path)
@@ -22,6 +32,12 @@ public class MavenPathTransformer
         return path;
     }
 
+    /**
+     * Relativizes the path based on known Maven build output directory patterns.
+     *
+     * @param path the path to relativize
+     * @return the relativized path
+     */
     @Override
     public Path relativize(Path path)
     {

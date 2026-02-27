@@ -1,6 +1,9 @@
 package org.carlspring.testing.idempotence.config;
 
 /**
+ * Abstract base implementation of {@link IdempotenceProperties} that reads
+ * the {@code useFullyQualifiedClassNamePrefixes} setting from a system property.
+ *
  * @author carlspring
  */
 public abstract class AbstractIdempotenceProperties
@@ -11,6 +14,9 @@ public abstract class AbstractIdempotenceProperties
             "org.carlspring.testing.idempotence.useFullyQualifiedClassNamePrefixes"));
 
 
+    /**
+     * Creates a new instance of {@link AbstractIdempotenceProperties}.
+     */
     public AbstractIdempotenceProperties()
     {
     }

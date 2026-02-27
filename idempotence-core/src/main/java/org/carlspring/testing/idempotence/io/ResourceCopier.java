@@ -16,6 +16,11 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+/**
+ * Copies test resources from the classpath or file system to the test resource directory.
+ *
+ * @author carlspring
+ */
 public class ResourceCopier
 {
 
@@ -26,11 +31,23 @@ public class ResourceCopier
     private final String resourceBasePath;
 
 
+    /**
+     * Creates a new instance of {@link ResourceCopier} with the given resource base path.
+     *
+     * @param resourceBasePath the base path to which test resources will be copied
+     */
     public ResourceCopier(String resourceBasePath)
     {
         this.resourceBasePath = resourceBasePath;
     }
 
+    /**
+     * Copies the given test resources to the specified test resource directory.
+     *
+     * @param testResources    the array of {@link TestResource} annotations describing the resources to copy
+     * @param testResourceDir  the relative directory within the base path where resources should be placed
+     * @throws IOException if an I/O error occurs during copying
+     */
     public void copyResources(TestResource[] testResources, String testResourceDir)
             throws IOException
     {

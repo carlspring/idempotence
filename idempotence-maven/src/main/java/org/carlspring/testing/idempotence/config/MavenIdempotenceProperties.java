@@ -3,6 +3,9 @@ package org.carlspring.testing.idempotence.config;
 import org.springframework.stereotype.Service;
 
 /**
+ * Maven-specific implementation of {@link AbstractIdempotenceProperties} that uses
+ * {@code target/test-resources} as the default base directory.
+ *
  * @author carlspring
  */
 @Service
@@ -14,6 +17,9 @@ public class MavenIdempotenceProperties
                              System.getProperty("org.carlspring.testing.idempotence.basedir") :
                              "target/test-resources";
 
+    /**
+     * Creates a new instance of {@link MavenIdempotenceProperties}.
+     */
     public MavenIdempotenceProperties()
     {
     }

@@ -11,6 +11,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 /**
+ * Gradle-specific implementation of {@link PathTransformer}.
+ *
  * @author carlspring
  */
 public class GradlePathTransformer
@@ -20,6 +22,20 @@ public class GradlePathTransformer
     private static Logger logger = LoggerFactory.getLogger(GradlePathTransformer.class);
 
 
+    /**
+     * Creates a new instance of {@link GradlePathTransformer}.
+     */
+    public GradlePathTransformer()
+    {
+    }
+
+    /**
+     * Transforms the resource path for the Gradle build output directory structure.
+     *
+     * @param basePath     the base path used as the reference for transformation
+     * @param resourcePath the resource path to transform
+     * @return the transformed path adjusted for the Gradle {@code build/test-resources} directory
+     */
     @Override
     public Path transform(Path basePath, Path resourcePath)
     {
@@ -62,6 +78,12 @@ public class GradlePathTransformer
         return path;
     }
 
+    /**
+     * Relativizes the path based on known Gradle build output directory patterns.
+     *
+     * @param path the path to relativize
+     * @return the relativized path
+     */
     @Override
     public Path relativize(Path path)
     {
