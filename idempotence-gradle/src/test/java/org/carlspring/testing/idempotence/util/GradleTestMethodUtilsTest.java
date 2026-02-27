@@ -52,4 +52,28 @@ class GradleTestMethodUtilsTest
         }
     }
 
+    @Test
+    void testMethodsWithSlashSeparator()
+    {
+        IdempotencePropertiesService.getInstance()
+                                    .getIdempotenceProperties()
+                                    .setSeparator("/");
+
+        try
+        {
+            TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
+
+            assertEquals("GradleTestMethodUtilsTest", details.getClassName());
+            assertEquals("testMethodsWithSlashSeparator", details.getMethodName());
+            assertEquals("build/test-resources/GradleTestMethodUtilsTest/testMethodsWithSlashSeparator",
+                         details.getPathToMethodTestResources());
+        }
+        finally
+        {
+            IdempotencePropertiesService.getInstance()
+                                        .getIdempotenceProperties()
+                                        .setSeparator("-");
+        }
+    }
+
 }

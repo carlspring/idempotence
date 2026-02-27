@@ -46,7 +46,7 @@ public class TestInvocationDetails
      */
     public String getPathToMethodTestResources()
     {
-        return getBaseDir() + "/" + getClassNameString() + "-" + methodName;
+        return getBaseDir() + "/" + getClassNameString() + properties.getSeparator() + methodName;
     }
 
     private String getBaseDir()

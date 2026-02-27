@@ -13,6 +13,8 @@ public abstract class AbstractIdempotenceProperties
     private boolean useFullyQualifiedClassNamePrefixes = Boolean.parseBoolean(System.getProperty(
             "org.carlspring.testing.idempotence.useFullyQualifiedClassNamePrefixes"));
 
+    private String separator = System.getProperty("org.carlspring.testing.idempotence.target.separator", "-");
+
 
     /**
      * Creates a new instance of {@link AbstractIdempotenceProperties}.
@@ -31,6 +33,22 @@ public abstract class AbstractIdempotenceProperties
     public void setUseFullyQualifiedClassNamePrefixes(boolean useFullyQualifiedClassNamePrefixes)
     {
         this.useFullyQualifiedClassNamePrefixes = useFullyQualifiedClassNamePrefixes;
+    }
+
+    @Override
+    public String getSeparator()
+    {
+        return separator;
+    }
+
+    @Override
+    public void setSeparator(String separator)
+    {
+        if (separator == null || separator.isEmpty())
+        {
+            throw new IllegalArgumentException("Separator must not be null or empty.");
+        }
+        this.separator = separator;
     }
 
 }
