@@ -122,6 +122,7 @@
                         <configuration>
                             <scripts>
                                 <script>file:///${basedir}/common-flow/test-gradle-common-flow.groovy</script>
+                                <script>file:///${basedir}/slash-separator-flow/test-gradle-slash-separator-flow.groovy</script>
                             </scripts>
                         </configuration>
                         <dependencies>

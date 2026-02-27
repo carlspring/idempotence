@@ -1,3 +1,4 @@
 rootProject.name = 'idempotence-gradle-integration-tests'
 
 include('common-flow')
+include('slash-separator-flow')
