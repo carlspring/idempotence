@@ -19,7 +19,7 @@ s3:///idempotence-test-resources/MyTest-testSingleFile/foo.txt
 
 ## Configuration
 
-Set the `org.carlspring.testing.idempotence.basedir` system property to an S3 URI:
+Set the `org.carlspring.testing.idempotence.s3fs.basedir` system property to an S3 URI:
 
 | Example | Description |
 |---------|-------------|

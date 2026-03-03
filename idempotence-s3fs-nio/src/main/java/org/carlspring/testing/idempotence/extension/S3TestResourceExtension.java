@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * </p>
  * <p>
  * Configure the target S3 location by setting the
- * {@code org.carlspring.testing.idempotence.basedir} system property to an S3 URI
+ * {@code org.carlspring.testing.idempotence.s3fs.basedir} system property to an S3 URI
  * (e.g. {@code s3:///my-bucket/test-resources} or
  * {@code s3://localhost:9090/my-bucket/test-resources} for a local MinIO instance).
  * </p>

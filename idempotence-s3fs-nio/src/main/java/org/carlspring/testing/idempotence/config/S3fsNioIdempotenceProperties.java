@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * <p>
  * The default base directory is {@code s3:///idempotence-test-resources}, which points
  * to a bucket named {@code idempotence-test-resources} on the default AWS S3 endpoint.
- * Override the {@code org.carlspring.testing.idempotence.basedir} system property to
+ * Override the {@code org.carlspring.testing.idempotence.s3fs.basedir} system property to
  * specify a different S3 URI (e.g. {@code s3://localhost:9090/my-bucket/prefix} for
  * a local S3-compatible server such as MinIO).
  * </p>
@@ -20,8 +20,8 @@ public class S3fsNioIdempotenceProperties
         extends AbstractIdempotenceProperties
 {
 
-    private String basedir = System.getProperty("org.carlspring.testing.idempotence.basedir") != null ?
-                             System.getProperty("org.carlspring.testing.idempotence.basedir") :
+    private String basedir = System.getProperty("org.carlspring.testing.idempotence.s3fs.basedir") != null ?
+                             System.getProperty("org.carlspring.testing.idempotence.s3fs.basedir") :
                              "s3:///idempotence-test-resources";
 
     /**
