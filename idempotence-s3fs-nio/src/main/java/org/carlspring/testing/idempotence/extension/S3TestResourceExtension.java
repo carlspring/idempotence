@@ -45,11 +45,6 @@ public class S3TestResourceExtension
 
     private static final Logger logger = LoggerFactory.getLogger(S3TestResourceExtension.class);
 
-    private final S3ResourceCopier s3ResourceCopier =
-            new S3ResourceCopier(IdempotencePropertiesService.getInstance()
-                                                             .getIdempotenceProperties()
-                                                             .getBasedir());
-
 
     /**
      * Creates a new instance of {@link S3TestResourceExtension}.
@@ -131,8 +126,11 @@ public class S3TestResourceExtension
     {
         if (testResources != null)
         {
+            String basedir = IdempotencePropertiesService.getInstance()
+                                                         .getIdempotenceProperties()
+                                                         .getBasedir();
             String testResourceDir = getTestResourceDirectory(context);
-            s3ResourceCopier.copyResources(testResources.value(), testResourceDir);
+            new S3ResourceCopier(basedir).copyResources(testResources.value(), testResourceDir);
         }
     }
 

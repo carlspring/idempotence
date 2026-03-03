@@ -22,6 +22,7 @@
 
     <properties>
         <version.s3fs-nio>3.0.0</version.s3fs-nio>
+        <version.testcontainers>1.21.3</version.testcontainers>
     </properties>
 
     <build>
@@ -90,6 +91,25 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>${version.testcontainers}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${version.testcontainers}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>minio</artifactId>
+            <version>${version.testcontainers}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
