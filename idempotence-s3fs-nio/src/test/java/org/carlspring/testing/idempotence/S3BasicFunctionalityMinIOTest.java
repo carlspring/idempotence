@@ -29,7 +29,7 @@ import software.amazon.awssdk.services.s3.S3Configuration;
 
 /**
  * Functional test verifying that {@link S3TestResourceExtension} correctly copies
- * resources declared via {@link TestResources} into an S3 bucket and that those
+ * resources declared via {@link TestResources} into a MinIO bucket and that those
  * objects can subsequently be found via the NIO2 {@link FileSystem} API.
  *
  * <p>A MinIO instance is started automatically via Testcontainers before the tests run.
@@ -39,7 +39,7 @@ import software.amazon.awssdk.services.s3.S3Configuration;
  */
 @Testcontainers(disabledWithoutDocker = true)
 @ExtendWith(S3TestResourceExtension.class)
-class S3BasicFunctionalityTest
+class S3BasicFunctionalityMinIOTest
 {
 
     static final String BUCKET = "idempotence-test-resources";
@@ -122,7 +122,7 @@ class S3BasicFunctionalityTest
                                                      .getBasedir();
         URI baseUri = URI.create(basedir);
         FileSystem s3fs = S3FileSystemUtils.getOrCreateS3FileSystem(baseUri);
-        Path s3File = s3fs.getPath(baseUri.getPath() + "/S3BasicFunctionalityTest-testSingleFile/foo.txt");
+        Path s3File = s3fs.getPath(baseUri.getPath() + "/S3BasicFunctionalityMinIOTest-testSingleFile/foo.txt");
 
         Assertions.assertTrue(Files.exists(s3File), "Test resource file should exist in S3!");
     }
@@ -137,7 +137,7 @@ class S3BasicFunctionalityTest
                                                      .getBasedir();
         URI baseUri = URI.create(basedir);
         FileSystem s3fs = S3FileSystemUtils.getOrCreateS3FileSystem(baseUri);
-        Path s3File = s3fs.getPath(baseUri.getPath() + "/S3BasicFunctionalityTest-testWithPatterns/nested/dir/foo.txt");
+        Path s3File = s3fs.getPath(baseUri.getPath() + "/S3BasicFunctionalityMinIOTest-testWithPatterns/nested/dir/foo.txt");
 
         Assertions.assertTrue(Files.exists(s3File), "Test resource file should exist in S3!");
     }
@@ -154,10 +154,10 @@ class S3BasicFunctionalityTest
         URI baseUri = URI.create(basedir);
         FileSystem s3fs = S3FileSystemUtils.getOrCreateS3FileSystem(baseUri);
 
-        Path s3File1 = s3fs.getPath(baseUri.getPath() + "/S3BasicFunctionalityTest-testMultipleWithPatterns/foo.txt");
+        Path s3File1 = s3fs.getPath(baseUri.getPath() + "/S3BasicFunctionalityMinIOTest-testMultipleWithPatterns/foo.txt");
         Assertions.assertTrue(Files.exists(s3File1), "Test resource file should exist in S3!");
 
-        Path s3File2 = s3fs.getPath(baseUri.getPath() + "/S3BasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt");
+        Path s3File2 = s3fs.getPath(baseUri.getPath() + "/S3BasicFunctionalityMinIOTest-testMultipleWithPatterns/nested/dir/foo.txt");
         Assertions.assertTrue(Files.exists(s3File2), "Test resource file should exist in S3!");
     }
 
