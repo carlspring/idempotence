@@ -13,7 +13,7 @@ public abstract class AbstractIdempotenceProperties
     private boolean useFullyQualifiedClassNamePrefixes = Boolean.parseBoolean(System.getProperty(
             "org.carlspring.testing.idempotence.useFullyQualifiedClassNamePrefixes"));
 
-    private String separator = System.getProperty("org.carlspring.testing.idempotence.target.separator", "-");
+    private String separator = System.getProperty("org.carlspring.testing.idempotence.target.separator", "/");
 
 
     /**

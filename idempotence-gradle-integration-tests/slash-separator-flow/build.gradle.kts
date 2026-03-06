@@ -45,7 +45,7 @@ tasks {
 	withType<Test> {
 		useJUnitPlatform()
 		// Use slash as the separator between class name and method name in test resource paths
-		jvmArgs("-Dorg.carlspring.testing.idempotence.target.separator=/")
+		jvmArgs("-Dorg.carlspring.testing.idempotence.target.separator=-")
 		// Display stdout at console when running tests
 		testLogging {
 			showStandardStreams = true

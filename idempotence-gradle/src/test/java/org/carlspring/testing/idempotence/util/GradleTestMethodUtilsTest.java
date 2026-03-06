@@ -24,7 +24,7 @@ class GradleTestMethodUtilsTest
 
         assertEquals("GradleTestMethodUtilsTest", details.getClassName());
         assertEquals("testMethodsDefault", details.getMethodName());
-        assertEquals("build/test-resources/GradleTestMethodUtilsTest-testMethodsDefault",
+        assertEquals("build/test-resources/GradleTestMethodUtilsTest/testMethodsDefault",
                      details.getPathToMethodTestResources());
     }
 
@@ -41,7 +41,7 @@ class GradleTestMethodUtilsTest
 
             assertEquals("org/carlspring/testing/idempotence/util/GradleTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithFQDNPath", details.getMethodName());
-            assertEquals("build/test-resources/org/carlspring/testing/idempotence/util/GradleTestMethodUtilsTest-testMethodsWithFQDNPath",
+            assertEquals("build/test-resources/org/carlspring/testing/idempotence/util/GradleTestMethodUtilsTest/testMethodsWithFQDNPath",
                          details.getPathToMethodTestResources());
         }
         finally
@@ -53,26 +53,26 @@ class GradleTestMethodUtilsTest
     }
 
     @Test
-    void testMethodsWithSlashSeparator()
+    void testMethodsWithHyphenSeparator()
     {
         IdempotencePropertiesService.getInstance()
                                     .getIdempotenceProperties()
-                                    .setSeparator("/");
+                                    .setSeparator("-");
 
         try
         {
             TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
 
             assertEquals("GradleTestMethodUtilsTest", details.getClassName());
-            assertEquals("testMethodsWithSlashSeparator", details.getMethodName());
-            assertEquals("build/test-resources/GradleTestMethodUtilsTest/testMethodsWithSlashSeparator",
+            assertEquals("testMethodsWithHyphenSeparator", details.getMethodName());
+            assertEquals("build/test-resources/GradleTestMethodUtilsTest-testMethodsWithHyphenSeparator",
                          details.getPathToMethodTestResources());
         }
         finally
         {
             IdempotencePropertiesService.getInstance()
                                         .getIdempotenceProperties()
-                                        .setSeparator("-");
+                                        .setSeparator("/");
         }
     }
 
