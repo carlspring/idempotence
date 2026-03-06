@@ -24,7 +24,7 @@ class MavenTestMethodUtilsTest
 
         assertEquals("MavenTestMethodUtilsTest", details.getClassName());
         assertEquals("testMethodsDefault", details.getMethodName());
-        assertEquals("target/test-resources/MavenTestMethodUtilsTest-testMethodsDefault",
+        assertEquals("target/test-resources/MavenTestMethodUtilsTest/testMethodsDefault",
                      details.getPathToMethodTestResources());
     }
 
@@ -43,7 +43,7 @@ class MavenTestMethodUtilsTest
 
             assertEquals("org/carlspring/testing/idempotence/util/MavenTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithFQDNPath", details.getMethodName());
-            assertEquals("target/test-resources/org/carlspring/testing/idempotence/util/MavenTestMethodUtilsTest-testMethodsWithFQDNPath",
+            assertEquals("target/test-resources/org/carlspring/testing/idempotence/util/MavenTestMethodUtilsTest/testMethodsWithFQDNPath",
                          details.getPathToMethodTestResources());
         }
         finally
@@ -51,6 +51,30 @@ class MavenTestMethodUtilsTest
             IdempotencePropertiesService.getInstance()
                                         .getIdempotenceProperties()
                                         .setUseFullyQualifiedClassNamePrefixes(false);
+        }
+    }
+
+    @Test
+    void testMethodsWithHyphenSeparator()
+    {
+        IdempotencePropertiesService.getInstance()
+                                    .getIdempotenceProperties()
+                                    .setSeparator("-");
+
+        try
+        {
+            TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
+
+            assertEquals("MavenTestMethodUtilsTest", details.getClassName());
+            assertEquals("testMethodsWithHyphenSeparator", details.getMethodName());
+            assertEquals("target/test-resources/MavenTestMethodUtilsTest-testMethodsWithHyphenSeparator",
+                         details.getPathToMethodTestResources());
+        }
+        finally
+        {
+            IdempotencePropertiesService.getInstance()
+                                        .getIdempotenceProperties()
+                                        .setSeparator("/");
         }
     }
 

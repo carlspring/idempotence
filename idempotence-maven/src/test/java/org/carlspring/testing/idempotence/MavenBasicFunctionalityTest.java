@@ -22,7 +22,7 @@ class MavenBasicFunctionalityTest
     @TestResources(@TestResource(source = "classpath:/foo.txt"))
     void testSingleFile()
     {
-        File testResource = new File("target/test-resources/MavenBasicFunctionalityTest-testSingleFile/foo.txt");
+        File testResource = new File("target/test-resources/MavenBasicFunctionalityTest/testSingleFile/foo.txt");
 
         Assertions.assertTrue(testResource.exists(), "Test resource file should exist!");
     }
@@ -31,7 +31,7 @@ class MavenBasicFunctionalityTest
     @TestResources(@TestResource(source = "classpath:/**/foo.txt"))
     void testWithPatterns()
     {
-        File testResource = new File("target/test-resources/MavenBasicFunctionalityTest-testWithPatterns/nested/dir/foo.txt");
+        File testResource = new File("target/test-resources/MavenBasicFunctionalityTest/testWithPatterns/nested/dir/foo.txt");
 
         Assertions.assertTrue(testResource.exists(), "Test resource file should exist!");
     }
@@ -41,11 +41,11 @@ class MavenBasicFunctionalityTest
                      @TestResource(source = "classpath:/**/foo.txt")} )
     void testMultipleWithPatterns()
     {
-        File testResource1 = new File("target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt");
+        File testResource1 = new File("target/test-resources/MavenBasicFunctionalityTest/testMultipleWithPatterns/foo.txt");
 
         Assertions.assertTrue(testResource1.exists(), "Test resource file should exist!");
 
-        File testResource2 = new File("target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt");
+        File testResource2 = new File("target/test-resources/MavenBasicFunctionalityTest/testMultipleWithPatterns/nested/dir/foo.txt");
 
         Assertions.assertTrue(testResource2.exists(), "Test resource file should exist!");
     }

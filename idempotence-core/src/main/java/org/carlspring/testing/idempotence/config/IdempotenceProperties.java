@@ -38,4 +38,21 @@ public interface IdempotenceProperties
      */
     void setUseFullyQualifiedClassNamePrefixes(boolean useFullyQualifiedClassNamePrefixes);
 
+    /**
+     * Returns the separator used between the test class name and the test method name in the
+     * resource directory path. Defaults to {@code -} (hyphen). Use {@code /} (slash) to place
+     * the class name and method name as separate path components.
+     *
+     * @return the separator string
+     */
+    String getSeparator();
+
+    /**
+     * Sets the separator used between the test class name and the test method name in the
+     * resource directory path.
+     *
+     * @param separator the separator string (e.g. {@code -} or {@code /})
+     */
+    void setSeparator(String separator);
+
 }
