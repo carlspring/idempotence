@@ -121,9 +121,14 @@ public class TestResourceExtension
         String className = context.getRequiredTestClass().getSimpleName();
         Optional<Method> testMethod = context.getTestMethod();
 
-        String path = testMethod.map(method -> String.format("%s-%s",
-                                                                     className,
-                                                                     method.getName()))
+        String separator = IdempotencePropertiesService.getInstance()
+                                                       .getIdempotenceProperties()
+                                                       .getSeparator();
+
+        String path = testMethod.map(method -> String.format("%s%s%s",
+                                                             className,
+                                                             separator,
+                                                             method.getName()))
                                 .orElse(className);
 
         return path;
