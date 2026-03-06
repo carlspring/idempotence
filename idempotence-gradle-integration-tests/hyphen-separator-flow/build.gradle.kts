@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "org.carlspring.testing.idempotence"
-description = "Idempotence Gradle Integration Tests - Slash Separator Flow"
+description = "Idempotence Gradle Integration Tests - Hyphen Separator Flow"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
@@ -44,7 +44,7 @@ dependencies {
 tasks {
 	withType<Test> {
 		useJUnitPlatform()
-		// Use slash as the separator between class name and method name in test resource paths
+		// Use hyphen as the separator between class name and method name in test resource paths
 		jvmArgs("-Dorg.carlspring.testing.idempotence.target.separator=-")
 		// Display stdout at console when running tests
 		testLogging {

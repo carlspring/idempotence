@@ -4,11 +4,11 @@ def baseScript = new GroovyScriptEngine( "$project.basedir" ).with {
 }
 this.metaClass.mixin baseScript
 
-println "Executing test-gradle-slash-separator-flow.groovy..."
+println "Executing test-gradle-hyphen-separator-flow.groovy..."
 
 def targetPath = getTargetPath(project)
 def gradlePath = getGradlePath(project)
-def executionPath = gradlePath.resolve('slash-separator-flow')
+def executionPath = gradlePath.resolve('hyphen-separator-flow')
 
 def gradlewName
 // Determine OS and appropriate gradlew executable

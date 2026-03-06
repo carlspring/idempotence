@@ -81,15 +81,20 @@ src/test/resources/nested/dir/foo.txt
 * For a Gradle project, with a test called `GradleBasicFunctionalityTest` with a method `testMultipleWithPatterns`,
   they will be placed under:
 ```
-build/test-resources/GradleBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt
-build/test-resources/GradleBasicFunctionalityTest-testMultipleWithPatterns/testMultipleWithPatterns/foo.txt
+build/test-resources/GradleBasicFunctionalityTest/testMultipleWithPatterns/nested/dir/foo.txt
+build/test-resources/GradleBasicFunctionalityTest/testMultipleWithPatterns/foo.txt
 ```
 
 * For a Maven project, with a test called `MavenBasicFunctionalityTest` with a method `testMultipleWithPatterns`,
   they will be placed under:
 ```
-target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt
-target/test-resources/MavenBasicFunctionalityTest-testMultipleWithPatterns/foo.txt
+target/test-resources/MavenBasicFunctionalityTest/testMultipleWithPatterns/nested/dir/foo.txt
+target/test-resources/MavenBasicFunctionalityTest/testMultipleWithPatterns/foo.txt
 ```
 
 At this point you need to make sure your tests look for the test resources in their isolated directories.
+
+!!! tip
+
+    The separator between the class name and the method name, the base directory, and other aspects of this behaviour
+    can be customised via system properties. See the [Configuration](./configuration.md) page for the full list.
