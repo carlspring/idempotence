@@ -54,7 +54,7 @@ class GradleHyphenSeparatorTest
 
         assertTrue(testResource1.exists(), "Test resource file '" + testResource1.getAbsolutePath() + "' should exist!");
 
-        File testResource2 = new File("build/test-resources/GradleBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt");
+        File testResource2 = new File("build/test-resources/GradleHyphenSeparatorTest-testMultipleWithPatterns/nested/dir/foo.txt");
 
         assertTrue(testResource2.exists(), "Test resource file '" + testResource2.getAbsolutePath() + "' should exist!");
     }
