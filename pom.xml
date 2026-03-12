@@ -45,10 +45,10 @@
     </developers>
 
     <scm>
+        <connection>scm:git:https://github.com/carlspring/idempotence.git</connection>
+        <developerConnection>scm:git:git@github.com:carlspring/idempotence.git</developerConnection>
         <url>https://github.com/carlspring/idempotence</url>
-        <connection>scm:git:git://github.com/carlspring/idempotence.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:carlspring/idempotence.git</developerConnection>
-        <tag>${project.version}</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
