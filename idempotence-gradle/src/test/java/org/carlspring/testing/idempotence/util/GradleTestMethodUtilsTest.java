@@ -5,6 +5,7 @@ import org.carlspring.testing.idempotence.config.IdempotencePropertiesService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
+import static org.carlspring.testing.idempotence.util.TestMethodService.getTestInvocationDetails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -20,7 +21,7 @@ class GradleTestMethodUtilsTest
     @Test
     void testMethodsDefault()
     {
-        TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
+        TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
 
         assertEquals("GradleTestMethodUtilsTest", details.getClassName());
         assertEquals("testMethodsDefault", details.getMethodName());
@@ -37,7 +38,7 @@ class GradleTestMethodUtilsTest
 
         try
         {
-            TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
+            TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
 
             assertEquals("org/carlspring/testing/idempotence/util/GradleTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithFQDNPath", details.getMethodName());
@@ -61,7 +62,7 @@ class GradleTestMethodUtilsTest
 
         try
         {
-            TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
+            TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
 
             assertEquals("GradleTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithHyphenSeparator", details.getMethodName());

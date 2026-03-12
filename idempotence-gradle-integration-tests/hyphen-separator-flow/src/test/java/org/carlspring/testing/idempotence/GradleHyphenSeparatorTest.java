@@ -5,10 +5,16 @@ import org.carlspring.testing.idempotence.annotation.TestResources;
 import org.carlspring.testing.idempotence.extension.TestResourceExtension;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Integration test verifying that the hyphen separator produces paths of the form
@@ -27,7 +33,7 @@ class GradleHyphenSeparatorTest
     {
         File testResource = new File("build/test-resources/GradleHyphenSeparatorTest-testSingleFile/foo.txt");
 
-        Assertions.assertTrue(testResource.exists(), "Test resource file should exist at hyphen-separated path!");
+        assertTrue(testResource.exists(), "Test resource file '" + testResource.getAbsolutePath() + "' should exist!");
     }
 
     @Test
@@ -36,7 +42,7 @@ class GradleHyphenSeparatorTest
     {
         File testResource = new File("build/test-resources/GradleHyphenSeparatorTest-testWithPatterns/nested/dir/foo.txt");
 
-        Assertions.assertTrue(testResource.exists(), "Test resource file should exist at hyphen-separated path!");
+        assertTrue(testResource.exists(), "Test resource file '" + testResource.getAbsolutePath() + "' should exist!");
     }
 
     @Test
@@ -46,11 +52,11 @@ class GradleHyphenSeparatorTest
     {
         File testResource1 = new File("build/test-resources/GradleHyphenSeparatorTest-testMultipleWithPatterns/foo.txt");
 
-        Assertions.assertTrue(testResource1.exists(), "Test resource file should exist at hyphen-separated path!");
+        assertTrue(testResource1.exists(), "Test resource file '" + testResource1.getAbsolutePath() + "' should exist!");
 
-        File testResource2 = new File("build/test-resources/GradleHyphenSeparatorTest-testMultipleWithPatterns/nested/dir/foo.txt");
+        File testResource2 = new File("build/test-resources/GradleBasicFunctionalityTest-testMultipleWithPatterns/nested/dir/foo.txt");
 
-        Assertions.assertTrue(testResource2.exists(), "Test resource file should exist at hyphen-separated path!");
+        assertTrue(testResource2.exists(), "Test resource file '" + testResource2.getAbsolutePath() + "' should exist!");
     }
 
 }

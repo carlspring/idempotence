@@ -1,11 +1,5 @@
-import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-import org.springframework.boot.gradle.tasks.run.BootRun
-
 plugins {
 	java
-	id("org.springframework.boot") version "3.5.6"
-	id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "org.carlspring.testing.idempotence"
@@ -23,17 +17,18 @@ configurations {
 }
 
 repositories {
-	mavenLocal()
+	mavenLocal {
+		content {
+			includeGroupByRegex("org\\.carlspring\\.testing\\.idempotence")
+			includeVersionByRegex("org\\.carlspring\\.testing\\.idempotence", "idempotence-.*", ".*-SNAPSHOT")
+		}
+	}
 	mavenCentral()
-	maven { url = uri("https://repo.spring.io/milestone") }
-	maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
 dependencies {
-	testImplementation("org.carlspring.testing:idempotence-core:1.0.0-SNAPSHOT")
-	testImplementation("org.carlspring.testing:idempotence-gradle:1.0.0-SNAPSHOT")
-
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.carlspring.testing.idempotence:idempotence-core:1.0.0-rc-4-SNAPSHOT")
+	testImplementation("org.carlspring.testing.idempotence:idempotence-gradle:1.0.0-rc-4-SNAPSHOT")
 
 	testImplementation(enforcedPlatform("org.junit:junit-bom:6.0.3"))
 	testImplementation("org.junit.jupiter:junit-jupiter-api")
@@ -53,34 +48,6 @@ tasks {
 	}
 
 	named<ProcessResources>("processResources") {
-	}
-
-	named<BootRun>("bootRun") {
-	}
-
-	named<Jar>("jar") {
-	}
-
-	named<BootJar>("bootJar") {
-		mainClass = "com.carlspring.accounting.AccountingApplication"
-		layered {
-			application {
-				intoLayer("spring-boot-loader") {
-					include("org/springframework/boot/loader/**")
-				}
-				intoLayer("application")
-			}
-			dependencies {
-				intoLayer("application") {
-					includeProjectDependencies()
-				}
-				intoLayer("snapshot-dependencies") {
-					include("*:*:*SNAPSHOT")
-				}
-				intoLayer("dependencies")
-			}
-			layerOrder.set(listOf("dependencies", "spring-boot-loader", "snapshot-dependencies", "application"))
-		}
 	}
 
 }

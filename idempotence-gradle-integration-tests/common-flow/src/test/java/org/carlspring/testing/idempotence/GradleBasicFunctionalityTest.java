@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author carlspring
@@ -28,7 +29,7 @@ class GradleBasicFunctionalityTest
     {
         File testResource = new File("build/test-resources/GradleBasicFunctionalityTest/testSingleFile/foo.txt");
 
-        Assertions.assertTrue(testResource.exists(), "Test resource file should exist!");
+        assertTrue(testResource.exists(), "Test resource file '" + testResource.getAbsolutePath() + "' should exist!");
     }
 
     @Test
@@ -37,7 +38,7 @@ class GradleBasicFunctionalityTest
     {
         File testResource = new File("build/test-resources/GradleBasicFunctionalityTest/testWithPatterns/nested/dir/foo.txt");
 
-        Assertions.assertTrue(testResource.exists(), "Test resource file should exist!");
+        assertTrue(testResource.exists(), "Test resource file '" + testResource.getAbsolutePath() + "' should exist!");
     }
 
     @Test
@@ -47,11 +48,11 @@ class GradleBasicFunctionalityTest
     {
         File testResource1 = new File("build/test-resources/GradleBasicFunctionalityTest/testMultipleWithPatterns/foo.txt");
 
-        Assertions.assertTrue(testResource1.exists(), "Test resource file should exist!");
+        assertTrue(testResource1.exists(), "Test resource file '" + testResource1.getAbsolutePath() + "' should exist!");
 
         File testResource2 = new File("build/test-resources/GradleBasicFunctionalityTest/testMultipleWithPatterns/nested/dir/foo.txt");
 
-        Assertions.assertTrue(testResource2.exists(), "Test resource file should exist!");
+        assertTrue(testResource2.exists(), "Test resource file '" + testResource2.getAbsolutePath() + "' should exist!");
     }
 
 }

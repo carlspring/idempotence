@@ -5,6 +5,7 @@ import org.carlspring.testing.idempotence.config.IdempotencePropertiesService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
+import static org.carlspring.testing.idempotence.util.TestMethodService.getTestInvocationDetails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -20,7 +21,7 @@ class MavenTestMethodUtilsTest
     @Test
     void testMethodsDefault()
     {
-        TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
+        TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
 
         assertEquals("MavenTestMethodUtilsTest", details.getClassName());
         assertEquals("testMethodsDefault", details.getMethodName());
@@ -32,14 +33,11 @@ class MavenTestMethodUtilsTest
     void testMethodsWithFQDNPath()
     {
         IdempotencePropertiesService instance = IdempotencePropertiesService.getInstance();
-
-        instance
-                                    .getIdempotenceProperties()
-                                    .setUseFullyQualifiedClassNamePrefixes(true);
+        instance.getIdempotenceProperties().setUseFullyQualifiedClassNamePrefixes(true);
 
         try
         {
-            TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
+            TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
 
             assertEquals("org/carlspring/testing/idempotence/util/MavenTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithFQDNPath", details.getMethodName());
@@ -63,7 +61,7 @@ class MavenTestMethodUtilsTest
 
         try
         {
-            TestInvocationDetails details = TestMethodService.getTestInvocationDetails(Thread.currentThread().getStackTrace());
+            TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
 
             assertEquals("MavenTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithHyphenSeparator", details.getMethodName());

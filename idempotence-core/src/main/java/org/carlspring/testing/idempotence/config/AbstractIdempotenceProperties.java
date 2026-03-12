@@ -1,5 +1,7 @@
 package org.carlspring.testing.idempotence.config;
 
+import java.io.File;
+
 /**
  * Abstract base implementation of {@link IdempotenceProperties} that reads
  * the {@code useFullyQualifiedClassNamePrefixes} setting from a system property.
@@ -13,7 +15,8 @@ public abstract class AbstractIdempotenceProperties
     private boolean useFullyQualifiedClassNamePrefixes = Boolean.parseBoolean(System.getProperty(
             "org.carlspring.testing.idempotence.useFullyQualifiedClassNamePrefixes"));
 
-    private String separator = System.getProperty("org.carlspring.testing.idempotence.target.separator", "/");
+    private String separator = System.getProperty("org.carlspring.testing.idempotence.target.separator",
+                                                  File.separator);
 
 
     /**
@@ -48,6 +51,7 @@ public abstract class AbstractIdempotenceProperties
         {
             throw new IllegalArgumentException("Separator must not be null or empty.");
         }
+
         this.separator = separator;
     }
 
