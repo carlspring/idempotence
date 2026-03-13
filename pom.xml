@@ -32,9 +32,8 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>3.3.1</version>
                 <configuration>
-                    <!-- This is required so that the idempotence-gradle-integration-tests can find the version of
-                         idempotence-core and idempotence-gradle in the local repository once the versions have been
-                         changed by the maven-release-plugin -->
+                    <!-- The release is handled from the GitHub Actions workflow (.github/workflows/create-release.yaml).
+                         This configuration is kept for reference only and is not actively used. -->
                     <preparationGoals>install</preparationGoals>
                     <releaseProfiles>release</releaseProfiles>
                     <arguments>-Prelease</arguments>
@@ -79,10 +78,15 @@
     </ciManagement>
 
     <distributionManagement>
+        <repository>
+            <id>sonatype-central-portal</id>
+            <name>Maven Central Portal Release Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
         <snapshotRepository>
-            <id>central</id>
-            <name>Maven Central Snapshot Repository</name>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <id>sonatype-central-portal</id>
+            <name>Maven Central Portal Snapshot Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
         </snapshotRepository>
     </distributionManagement>
 

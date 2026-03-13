@@ -16,6 +16,7 @@
 
         <maven.compiler.release>21</maven.compiler.release>
 
+        <version.njord>0.9.4</version.njord>
         <version.junit>6.0.3</version.junit>
         <version.logback>1.5.32</version.logback>
         <version.slf4j>2.0.17</version.slf4j>
@@ -36,15 +37,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.5.0</version>
-                </plugin>
-                
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>3.3.1</version>
-                    <configuration>
-                        <preparationGoals>install</preparationGoals>
-                    </configuration>
                 </plugin>
                 
                 <plugin>
@@ -115,21 +107,14 @@
                         </includes>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>eu.maveniverse.maven.plugins</groupId>
+                    <artifactId>njord</artifactId>
+                    <version>${version.njord}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.10.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                    <autoPublish>true</autoPublish>
-                    <waitUntil>published</waitUntil>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
     <dependencyManagement>
@@ -221,10 +206,15 @@
     </ciManagement>
 
     <distributionManagement>
+        <repository>
+            <id>sonatype-central-portal</id>
+            <name>Maven Central Portal Release Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
         <snapshotRepository>
-            <id>central</id>
-            <name>Maven Central Snapshot Repository</name>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <id>sonatype-central-portal</id>
+            <name>Maven Central Portal Snapshot Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -233,18 +223,6 @@
             <id>release</id>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.sonatype.central</groupId>
-                        <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>0.10.0</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <publishingServerId>central</publishingServerId>
-                            <autoPublish>true</autoPublish>
-                            <waitUntil>published</waitUntil>
-                        </configuration>
-                    </plugin>
-
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
