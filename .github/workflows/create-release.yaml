@@ -30,9 +30,6 @@ jobs:
           cache: 'maven'
           distribution: 'temurin'
           java-version: '22'
-          server-id: central
-          server-username: MAVEN_CENTRAL_USERNAME
-          server-password: MAVEN_CENTRAL_PASSWORD
           gpg-private-key: ${{ secrets.MAVEN_CENTRAL_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_CENTRAL_GPG_PASSPHRASE
 
@@ -130,7 +127,9 @@ jobs:
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           MAVEN_CENTRAL_GPG_PASSPHRASE: ${{ secrets.MAVEN_CENTRAL_GPG_PASSPHRASE }}
         run: |
-           mvn -s ./.github/settings.xml clean deploy -DskipTests=false -Prelease -DaltDeploymentRepository=central::njord:
+           # The repo ID before '::' is a required-but-unused placeholder for Maven's deploy plugin.
+           # 'njord:' is the Njord local-staging URL (uses the default RELEASE store template).
+           mvn -s ./.github/settings.xml clean deploy -DskipTests=false -Prelease -DaltDeploymentRepository=local-staging::njord:
 
       - name: Publish Release Artifacts to Maven Central Portal
         env:

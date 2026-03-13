@@ -10,11 +10,6 @@
 
     <servers>
         <server>
-            <id>central</id>
-            <username>${env.MAVEN_CENTRAL_USERNAME}</username>
-            <password>${env.MAVEN_CENTRAL_PASSWORD}</password>
-        </server>
-        <server>
             <id>sonatype-central-portal</id>
             <username>${env.MAVEN_CENTRAL_USERNAME}</username>
             <password>${env.MAVEN_CENTRAL_PASSWORD}</password>
