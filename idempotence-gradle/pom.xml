@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.carlspring.testing.idempotence</groupId>
         <artifactId>idempotence-parent</artifactId>
-        <version>1.0.0-rc-4</version>
+        <version>1.0.0-rc-5-SNAPSHOT</version>
         <relativePath>../idempotence-parent</relativePath>
     </parent>
 
     <artifactId>idempotence-gradle</artifactId>
-    <version>1.0.0-rc-4</version>
+    <version>1.0.0-rc-5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Idempotence Gradle</name>
