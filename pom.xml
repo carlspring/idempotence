@@ -79,6 +79,11 @@
     </ciManagement>
 
     <distributionManagement>
+        <repository>
+            <id>sonatype-central-portal</id>
+            <name>Maven Central Release Repository</name>
+            <url>https://central.sonatype.com/</url>
+        </repository>
         <snapshotRepository>
             <id>sonatype-central-portal</id>
             <name>Maven Central Snapshot Repository</name>
