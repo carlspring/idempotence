@@ -112,12 +112,12 @@
         <repository>
             <id>sonatype-central-portal</id>
             <name>Maven Central Portal Release Repository</name>
-            <url>https://central.sonatype.com/</url>
+            <url>https://repo.maven.apache.org/maven2</url>
         </repository>
         <snapshotRepository>
             <id>sonatype-central-portal</id>
             <name>Maven Central Portal Snapshot Repository</name>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <url>https://repo.maven.apache.org/maven2</url>
         </snapshotRepository>
     </distributionManagement>
 
