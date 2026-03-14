@@ -1,3 +1,7 @@
+---
+title: idempotence-gradle
+---
+
 # `idempotence-gradle`
 
 This Maven module is where the code for Gradle extension is implemented.

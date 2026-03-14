@@ -45,3 +45,4 @@ lib/*
 
 # mkdocs
 site/
+__pycache__/

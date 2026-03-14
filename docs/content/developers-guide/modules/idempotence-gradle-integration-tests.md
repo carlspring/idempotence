@@ -1,3 +1,7 @@
+---
+title: idempotence-gradle-integration-tests
+---
+
 # `idempotence-gradle-integration-tests`
 
 This Maven module contains the integration tests for the Gradle extension.
@@ -91,8 +95,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.carlspring.testing:idempotence-core:1.0.0-SNAPSHOT")
-    testImplementation("org.carlspring.testing:idempotence-gradle:1.0.0-SNAPSHOT")
+    testImplementation("org.carlspring.testing:idempotence-core:{{ version }}")
+    testImplementation("org.carlspring.testing:idempotence-gradle:{{ version }}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
