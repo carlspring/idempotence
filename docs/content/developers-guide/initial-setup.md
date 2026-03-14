@@ -5,18 +5,18 @@ to your project, as illustrated below:
 
 === "Gradle (Groovy DSL)"
     ```groovy
-    testImplementation "org.carlspring.testing.idempotence:idempotence-gradle:{{ latest-git-tag }}"
+    testImplementation "org.carlspring.testing.idempotence:idempotence-gradle:{{ version }}"
     ```
 === "Gradle (Kotlin DSL)"
     ```kotlin
-    testImplementation("org.carlspring.testing.idempotence:idempotence-gradle:{{ latest-git-tag }}")
+    testImplementation("org.carlspring.testing.idempotence:idempotence-gradle:{{ version }}")
     ```
 === "Maven"
     ```xml
     <dependency>
         <groupId>org.carlspring.testing.idempotence</groupId>
         <artifactId>idempotence-maven</artifactId>
-        <version>{{ latest-git-tag }}</version>
+        <version>{{ version }}</version>
         <scope>test</scope>
     </dependency>
     ```

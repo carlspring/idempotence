@@ -91,8 +91,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.carlspring.testing:idempotence-core:{{ latest-git-tag }}")
-    testImplementation("org.carlspring.testing:idempotence-gradle:{{ latest-git-tag }}")
+    testImplementation("org.carlspring.testing:idempotence-core:{{ version }}")
+    testImplementation("org.carlspring.testing:idempotence-gradle:{{ version }}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 

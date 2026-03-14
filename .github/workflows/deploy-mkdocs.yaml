@@ -21,7 +21,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          fetch-tags: true
           ref: ${{ github.event.inputs.VERSION }}
 
       - name: Build docs
