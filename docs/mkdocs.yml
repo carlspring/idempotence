@@ -45,6 +45,7 @@ theme:
 
 plugins:
   - search
+  - latest-git-tag
 
 markdown_extensions:
   - admonition
