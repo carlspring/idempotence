@@ -1,3 +1,7 @@
+---
+title: idempotence-gradle-integration-tests
+---
+
 # `idempotence-gradle-integration-tests`
 
 This Maven module contains the integration tests for the Gradle extension.

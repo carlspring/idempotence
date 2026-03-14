@@ -1,3 +1,7 @@
+---
+title: idempotence-maven
+---
+
 # `idempotence-maven`
 
 This Maven module is where the code for Maven extension is implemented.

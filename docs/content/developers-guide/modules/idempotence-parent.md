@@ -1,3 +1,7 @@
+---
+title: idempotence-parent
+---
+
 # `idempotence-parent`
 
 This Maven module is the parent module for the Idempotence project.

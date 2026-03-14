@@ -1,0 +1,23 @@
+{#-
+  Override of partials/source.html:
+  Shows the current project version from the Maven POM (config.extra.pom_version)
+  instead of the latest GitHub release tag fetched by the Material theme JavaScript.
+  The data-md-component="source" attribute is intentionally omitted so that the
+  Material JS does not overwrite this static version with the GitHub API value.
+-#}
+<a href="{{ config.repo_url }}" title="{{ lang.t('source') }}" class="md-source">
+  <div class="md-source__icon md-icon">
+    {% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </div>
+  <div class="md-source__repository">
+    {{ config.repo_name }}
+    {% if config.extra.pom_version %}
+      <ul class="md-source__facts">
+        <li class="md-source__fact md-source__fact--version">
+          {{ config.extra.pom_version }}
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+</a>
