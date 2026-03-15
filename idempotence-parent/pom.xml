@@ -4,7 +4,7 @@
 
     <groupId>org.carlspring.testing.idempotence</groupId>
     <artifactId>idempotence-parent</artifactId>
-    <version>1.0.0-rc-5</version>
+    <version>1.0.0-rc-6-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Idempotence Parent</name>
