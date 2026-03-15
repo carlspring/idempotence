@@ -6,6 +6,8 @@ on:
       - master
     paths:
       - 'docs/**/**'
+  release:
+    types: [published]
 
 permissions:
   pages: write      # to deploy to Pages
@@ -20,11 +22,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-        with:
-          ref: ${{ github.event.inputs.VERSION }}
+
+      - name: Determine docs version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "docs_version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+          else
+            echo "docs_version=" >> $GITHUB_OUTPUT
+          fi
 
       - name: Build docs
         working-directory: docs
+        env:
+          DOCS_VERSION: ${{ steps.version.outputs.docs_version }}
         run: docker compose run build
 
       - name: Create tar archive of site
@@ -38,5 +49,6 @@ jobs:
           path: ./docs/site/
 
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
 

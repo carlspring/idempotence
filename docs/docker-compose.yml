@@ -20,3 +20,5 @@ services:
     command: [ "build" ]
     volumes:
       - ../:/workspace
+    environment:
+      - DOCS_VERSION
