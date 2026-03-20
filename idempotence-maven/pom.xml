@@ -108,17 +108,5 @@
         <url>https://github.com/carlspring/idempotence/actions</url>
     </ciManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>sonatype-central-portal</id>
-            <name>Maven Central Portal Release Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-        </repository>
-        <snapshotRepository>
-            <id>sonatype-central-portal</id>
-            <name>Maven Central Portal Snapshot Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>

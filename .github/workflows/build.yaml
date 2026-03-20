@@ -49,3 +49,23 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./mvnw -s ./.github/settings.xml -B deploy -DskipTests=true
+
+      - name: Set PR snapshot version
+        if: github.event_name == 'pull_request'
+        id: set_pr_version
+        run: |
+          BASE_VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//')
+          PR_VERSION="${BASE_VERSION}-PR-${{ github.event.number }}-SNAPSHOT"
+          echo "pr_version=${PR_VERSION}" >> $GITHUB_OUTPUT
+          echo "Setting PR snapshot version to: ${PR_VERSION}"
+          ./mvnw -B versions:set -DnewVersion="${PR_VERSION}" -DgenerateBackupPoms=false
+          find idempotence-gradle-integration-tests -name "build.gradle.kts" -exec sed -i \
+            -e "s|idempotence-core:[^\"]*\"|idempotence-core:${PR_VERSION}\"|g" \
+            -e "s|idempotence-gradle:[^\"]*\"|idempotence-gradle:${PR_VERSION}\"|g" {} \;
+
+      - name: Publish PR Snapshot to GitHub Packages
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./mvnw -s ./.github/settings.xml -B deploy -DskipTests=true
