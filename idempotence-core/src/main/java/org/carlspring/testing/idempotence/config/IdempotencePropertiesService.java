@@ -14,7 +14,7 @@ public class IdempotencePropertiesService
 
     private static IdempotenceProperties idempotenceProperties;
 
-    private static IdempotencePropertiesService instance;
+    private static volatile IdempotencePropertiesService instance;
 
 
     private IdempotencePropertiesService()
@@ -28,13 +28,22 @@ public class IdempotencePropertiesService
      */
     public static IdempotencePropertiesService getInstance()
     {
-        if (instance == null)
+        IdempotencePropertiesService localInstance = instance;
+        if (localInstance == null)
         {
-            instance = new IdempotencePropertiesService();
-            instance.initialize();
+            synchronized (IdempotencePropertiesService.class)
+            {
+                localInstance = instance;
+                if (localInstance == null)
+                {
+                    localInstance = new IdempotencePropertiesService();
+                    localInstance.initialize();
+                    instance = localInstance;
+                }
+            }
         }
 
-        return instance;
+        return localInstance;
     }
 
     private void initialize()

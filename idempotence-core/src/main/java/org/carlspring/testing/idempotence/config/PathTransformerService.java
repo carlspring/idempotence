@@ -16,7 +16,7 @@ public class PathTransformerService
 
     private static PathTransformer pathTransformer;
 
-    private static PathTransformerService instance;
+    private static volatile PathTransformerService instance;
 
 
     private PathTransformerService()
@@ -30,13 +30,22 @@ public class PathTransformerService
      */
     public static PathTransformerService getInstance()
     {
-        if (instance == null)
+        PathTransformerService localInstance = instance;
+        if (localInstance == null)
         {
-            instance = new PathTransformerService();
-            instance.initialize();
+            synchronized (PathTransformerService.class)
+            {
+                localInstance = instance;
+                if (localInstance == null)
+                {
+                    localInstance = new PathTransformerService();
+                    localInstance.initialize();
+                    instance = localInstance;
+                }
+            }
         }
 
-        return instance;
+        return localInstance;
     }
 
     private void initialize()
