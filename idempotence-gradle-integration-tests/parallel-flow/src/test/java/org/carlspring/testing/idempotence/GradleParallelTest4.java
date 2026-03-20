@@ -11,21 +11,21 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * First of three concurrently-initialised test classes that verify {@link TestResourceExtension}
+ * A concurrently-initialised test classes that verify {@link TestResourceExtension}
  * (and, transitively, {@code IdempotencePropertiesService#getInstance()}) behaves correctly when
  * multiple test classes are loaded and run in parallel Gradle test workers.
  *
  * @author carlspring
  */
 @ExtendWith(TestResourceExtension.class)
-class GradleParallelTestA
+class GradleParallelTest4
 {
 
     @Test
     @TestResources(@TestResource(source = "classpath:/foo.txt"))
     void testSingleFile()
     {
-        File testResource = new File("build/test-resources/GradleParallelTestA/testSingleFile/foo.txt");
+        File testResource = new File("build/test-resources/GradleParallelTest4/testSingleFile/foo.txt");
 
         assertTrue(testResource.exists(), "Test resource file '" + testResource.getAbsolutePath() + "' should exist!");
     }
@@ -34,7 +34,7 @@ class GradleParallelTestA
     @TestResources(@TestResource(source = "classpath*:/**/foo.txt"))
     void testWithPatterns()
     {
-        File testResource = new File("build/test-resources/GradleParallelTestA/testWithPatterns/nested/dir/foo.txt");
+        File testResource = new File("build/test-resources/GradleParallelTest4/testWithPatterns/nested/dir/foo.txt");
 
         assertTrue(testResource.exists(), "Test resource file '" + testResource.getAbsolutePath() + "' should exist!");
     }
