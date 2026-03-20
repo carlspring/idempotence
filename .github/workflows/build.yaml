@@ -8,6 +8,10 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
 
@@ -26,3 +30,22 @@ jobs:
 
       - name: Build with Maven
         run: ./mvnw -B clean package
+
+      - name: Check if version is a SNAPSHOT
+        if: github.event_name == 'push'
+        id: check_snapshot
+        run: |
+          VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "Current version: $VERSION"
+          if [[ "$VERSION" == *-SNAPSHOT ]]; then
+            echo "is_snapshot=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_snapshot=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish Snapshot to GitHub Packages
+        if: github.event_name == 'push' && steps.check_snapshot.outputs.is_snapshot == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./mvnw -s ./.github/settings.xml -B deploy -DskipTests=true
