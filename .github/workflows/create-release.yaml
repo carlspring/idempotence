@@ -130,6 +130,12 @@ jobs:
               -DprocessAllModules=true \
               -DgenerateBackupPoms=false
 
+      - name: Update Gradle Integration Test Versions to Release Version
+        run: |
+          find idempotence-gradle-integration-tests -name "build.gradle.kts" -exec sed -i \
+            -e "s|idempotence-core:[^\"]*\"|idempotence-core:${{ steps.determine_version.outputs.release_version }}\"|g" \
+            -e "s|idempotence-gradle:[^\"]*\"|idempotence-gradle:${{ steps.determine_version.outputs.release_version }}\"|g" {} \;
+
       - name: Commit Release Version
         run: |
           git config user.name "GitHub Actions"
@@ -158,6 +164,12 @@ jobs:
         run: |
           mvn versions:set -DnewVersion=${{ steps.determine_next_version.outputs.next_development_version }} -DprocessAllModules=true -DgenerateBackupPoms=false
           # mvn -s ./.github/settings.xml clean deploy -DskipTests=false
+
+      - name: Update Gradle Integration Test Versions to Next Development Version
+        run: |
+          find idempotence-gradle-integration-tests -name "build.gradle.kts" -exec sed -i \
+            -e "s|idempotence-core:[^\"]*\"|idempotence-core:${{ steps.determine_next_version.outputs.next_development_version }}\"|g" \
+            -e "s|idempotence-gradle:[^\"]*\"|idempotence-gradle:${{ steps.determine_next_version.outputs.next_development_version }}\"|g" {} \;
 
       - name: Commit Next Development Version
         run: |
