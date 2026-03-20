@@ -113,6 +113,7 @@
                             <scripts>
                                 <script>file:///${basedir}/common-flow/test-gradle-common-flow.groovy</script>
                                 <script>file:///${basedir}/hyphen-separator-flow/test-gradle-hyphen-separator-flow.groovy</script>
+                                <script>file:///${basedir}/parallel-flow/test-gradle-parallel-flow.groovy</script>
                             </scripts>
                         </configuration>
                         <dependencies>

@@ -2,3 +2,4 @@ rootProject.name = 'idempotence-gradle-integration-tests'
 
 include('common-flow')
 include('hyphen-separator-flow')
+include('parallel-flow')
