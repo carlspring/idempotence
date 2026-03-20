@@ -94,9 +94,9 @@
             <url>https://repo.maven.apache.org/maven2</url>
         </repository>
         <snapshotRepository>
-            <id>sonatype-central-portal</id>
-            <name>Maven Central Portal Snapshot Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/carlspring/idempotence</url>
         </snapshotRepository>
     </distributionManagement>
 
