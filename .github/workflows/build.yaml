@@ -11,6 +11,8 @@ on:
 permissions:
   contents: read
   packages: write
+  pull-requests: read
+  security-events: write
 
 jobs:
   build:
@@ -49,6 +51,30 @@ jobs:
           name: coverage-reports
           path: '**/target/site/jacoco/cobertura.xml'
           if-no-files-found: warn
+
+      - name: Upload coverage to GitHub (idempotence-core)
+        if: hashFiles('idempotence-core/target/site/jacoco/cobertura.xml') != ''
+        uses: code-quality-org/upload-code-coverage-action@dd8808a1784733fd19ba6d53c01d780c5a9ff960 # main
+        with:
+          file: idempotence-core/target/site/jacoco/cobertura.xml
+          language: Java
+          label: code-coverage/jacoco-core
+
+      - name: Upload coverage to GitHub (idempotence-maven)
+        if: hashFiles('idempotence-maven/target/site/jacoco/cobertura.xml') != ''
+        uses: code-quality-org/upload-code-coverage-action@dd8808a1784733fd19ba6d53c01d780c5a9ff960 # main
+        with:
+          file: idempotence-maven/target/site/jacoco/cobertura.xml
+          language: Java
+          label: code-coverage/jacoco-maven
+
+      - name: Upload coverage to GitHub (idempotence-gradle)
+        if: hashFiles('idempotence-gradle/target/site/jacoco/cobertura.xml') != ''
+        uses: code-quality-org/upload-code-coverage-action@dd8808a1784733fd19ba6d53c01d780c5a9ff960 # main
+        with:
+          file: idempotence-gradle/target/site/jacoco/cobertura.xml
+          language: Java
+          label: code-coverage/jacoco-gradle
 
       - name: Check if version is a SNAPSHOT
         if: github.event_name == 'push'
