@@ -11,6 +11,8 @@ on:
 permissions:
   contents: read
   packages: write
+  pull-requests: read
+  security-events: write
 
 jobs:
   build:
@@ -29,7 +31,50 @@ jobs:
           java-version: '22'
 
       - name: Build with Maven
-        run: ./mvnw -B clean package
+        run: ./mvnw -B clean install
+
+      - name: Convert JaCoCo XML to Cobertura XML
+        run: |
+          find . -name "jacoco.xml" -path "*/target/site/jacoco/jacoco.xml" | while read jacoco_file; do
+            module_dir=$(echo "$jacoco_file" | sed 's|/target/site/jacoco/jacoco.xml||')
+            src_dir="$module_dir/src/main/java"
+            cobertura_file="$module_dir/target/site/jacoco/cobertura.xml"
+            if [ -d "$src_dir" ]; then
+              python3 .github/scripts/jacoco2cobertura.py "$jacoco_file" "$src_dir" > "$cobertura_file"
+              echo "Converted $jacoco_file -> $cobertura_file"
+            fi
+          done
+
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-reports
+          path: '**/target/site/jacoco/cobertura.xml'
+          if-no-files-found: warn
+
+      - name: Upload coverage to GitHub (idempotence-core)
+        if: hashFiles('idempotence-core/target/site/jacoco/cobertura.xml') != ''
+        uses: code-quality-org/upload-code-coverage-action@dd8808a1784733fd19ba6d53c01d780c5a9ff960 # main
+        with:
+          file: idempotence-core/target/site/jacoco/cobertura.xml
+          language: Java
+          label: code-coverage/jacoco-core
+
+      - name: Upload coverage to GitHub (idempotence-maven)
+        if: hashFiles('idempotence-maven/target/site/jacoco/cobertura.xml') != ''
+        uses: code-quality-org/upload-code-coverage-action@dd8808a1784733fd19ba6d53c01d780c5a9ff960 # main
+        with:
+          file: idempotence-maven/target/site/jacoco/cobertura.xml
+          language: Java
+          label: code-coverage/jacoco-maven
+
+      - name: Upload coverage to GitHub (idempotence-gradle)
+        if: hashFiles('idempotence-gradle/target/site/jacoco/cobertura.xml') != ''
+        uses: code-quality-org/upload-code-coverage-action@dd8808a1784733fd19ba6d53c01d780c5a9ff960 # main
+        with:
+          file: idempotence-gradle/target/site/jacoco/cobertura.xml
+          language: Java
+          label: code-coverage/jacoco-gradle
 
       - name: Check if version is a SNAPSHOT
         if: github.event_name == 'push'
