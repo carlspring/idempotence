@@ -17,6 +17,10 @@
     <description>Integration tests for the Gradle extension of the Idempotence project</description>
     <url>https://carlspring.github.io/idempotence/</url>
 
+    <properties>
+        <jacoco.skip>true</jacoco.skip>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
