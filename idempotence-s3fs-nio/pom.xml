@@ -1,0 +1,164 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.carlspring.testing.idempotence</groupId>
+        <artifactId>idempotence-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../idempotence-parent</relativePath>
+    </parent>
+
+    <groupId>org.carlspring.testing.idempotence</groupId>
+    <artifactId>idempotence-s3fs-nio</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Idempotence S3FS NIO</name>
+    <description>S3 extension for the Idempotence project using s3fs-nio</description>
+    <url>https://carlspring.github.io/idempotence/</url>
+
+    <properties>
+        <version.s3fs-nio>3.0.0</version.s3fs-nio>
+        <version.testcontainers>1.21.3</version.testcontainers>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.carlspring.testing.idempotence</groupId>
+            <artifactId>idempotence-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.carlspring.cloud.aws</groupId>
+            <artifactId>s3fs-nio</artifactId>
+            <version>${version.s3fs-nio}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>${version.testcontainers}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${version.testcontainers}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>minio</artifactId>
+            <version>${version.testcontainers}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>carlspring</id>
+            <name>Martin Todorov</name>
+            <email>carlspring@gmail.com</email>
+            <url>https://github.com/carlspring</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/carlspring/idempotence</url>
+        <connection>scm:git:git://github.com/carlspring/idempotence.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:carlspring/idempotence.git</developerConnection>
+        <tag>${project.version}</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/carlspring/idempotence/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>GitHub Actions</system>
+        <url>https://github.com/carlspring/idempotence/actions</url>
+    </ciManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>Maven Central Release Repository</name>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>central</id>
+            <name>Maven Central Snapshot Repository</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
