@@ -12,6 +12,10 @@ updates:
       interval: "daily"
     commit-message:
       prefix: deps(upgrade)
+    groups:
+      groovy:
+        patterns:
+          - "org.apache.groovy:*"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
