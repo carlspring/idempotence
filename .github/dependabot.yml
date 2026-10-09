@@ -48,6 +48,9 @@ updates:
     commit-message:
       prefix: deps(upgrade)
     groups:
-      github-actions:
+      codeql:
         patterns:
-          - "*"
+          - "github/codeql-action*"
+      actions:
+        patterns:
+          - "actions/*"
