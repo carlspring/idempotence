@@ -30,7 +30,7 @@ dependencies {
 	testImplementation("org.carlspring.testing.idempotence:idempotence-core:1.0.0-rc-8-SNAPSHOT")
 	testImplementation("org.carlspring.testing.idempotence:idempotence-gradle:1.0.0-rc-8-SNAPSHOT")
 
-	testImplementation(enforcedPlatform("org.junit:junit-bom:6.0.3"))
+	testImplementation(enforcedPlatform("org.junit:junit-bom:6.1.3"))
 	testImplementation("org.junit.jupiter:junit-jupiter-api")
 	testImplementation("org.junit.jupiter:junit-jupiter-engine")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")

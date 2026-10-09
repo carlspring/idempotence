@@ -8,6 +8,27 @@ updates:
   - package-ecosystem: "maven"
     directory: "/" # Location of package manifests
     schedule:
+      # Check for updates to Maven dependencies every day
+      interval: "daily"
+    commit-message:
+      prefix: deps(upgrade)
+    groups:
+      spring:
+        patterns:
+          - "org.springframework*"
+      junit:
+        patterns:
+          - "org.junit*"
+      logging:
+        patterns:
+          - "org.slf4j:*"
+          - "ch.qos.logback:*"
+      maven-plugins:
+        patterns:
+          - "org.apache.maven.plugins:*"
+  - package-ecosystem: "gradle"
+    directory: "/idempotence-gradle-integration-tests"
+    schedule:
       # Check for updates to Gradle dependencies every day
       interval: "daily"
     commit-message:
@@ -16,6 +37,12 @@ updates:
       groovy:
         patterns:
           - "org.apache.groovy:*"
+      junit:
+        patterns:
+          - "org.junit*"
+      gradle-wrapper:
+        patterns:
+          - "gradle"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -23,3 +50,10 @@ updates:
       interval: "daily"
     commit-message:
       prefix: deps(upgrade)
+    groups:
+      codeql:
+        patterns:
+          - "github/codeql-action*"
+      actions:
+        patterns:
+          - "actions/*"
