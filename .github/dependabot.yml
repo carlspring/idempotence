@@ -34,6 +34,9 @@ updates:
     commit-message:
       prefix: deps(upgrade)
     groups:
+      groovy:
+        patterns:
+          - "org.apache.groovy:*"
       junit:
         patterns:
           - "org.junit*"
