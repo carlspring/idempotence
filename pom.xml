@@ -23,6 +23,7 @@
         <module>idempotence-maven</module>
         <module>idempotence-gradle</module>
         <module>idempotence-gradle-integration-tests</module>
+        <module>idempotence-s3fs-nio</module>
     </modules>
 
     <build>
