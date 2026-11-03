@@ -26,6 +26,10 @@ updates:
       maven-plugins:
         patterns:
           - "org.apache.maven.plugins:*"
+      njord:
+        patterns:
+          - "eu.maveniverse.maven.njord:*"
+          - "eu.maveniverse.maven.plugins:njord"
   - package-ecosystem: "gradle"
     directory: "/idempotence-gradle-integration-tests"
     schedule:
