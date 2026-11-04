@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
   build:
@@ -43,15 +42,18 @@ jobs:
             echo "is_snapshot=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Publish Snapshot to GitHub Packages
+      - name: Publish Snapshot to Maven Central Portal
         if: github.event_name == 'push' && steps.check_snapshot.outputs.is_snapshot == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
         run: |
           ./mvnw -s ./.github/settings.xml -B deploy -DskipTests=true
 
+      # Pull requests from forks and Dependabot don't get the Maven Central secrets,
+      # so PR snapshots are only published for branches in this repository.
       - name: Set PR snapshot version
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
         id: set_pr_version
         run: |
           BASE_VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//')
@@ -63,9 +65,10 @@ jobs:
             -e "s|idempotence-core:[^\"]*\"|idempotence-core:${PR_VERSION}\"|g" \
             -e "s|idempotence-gradle:[^\"]*\"|idempotence-gradle:${PR_VERSION}\"|g" {} \;
 
-      - name: Publish PR Snapshot to GitHub Packages
-        if: github.event_name == 'pull_request'
+      - name: Publish PR Snapshot to Maven Central Portal
+        if: steps.set_pr_version.outcome == 'success'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
         run: |
           ./mvnw -s ./.github/settings.xml -B deploy -DskipTests=true
