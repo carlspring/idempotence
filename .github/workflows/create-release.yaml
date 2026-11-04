@@ -128,7 +128,7 @@ jobs:
 
       - name: Update POM Version to Release Version
         run: |
-          mvn versions:set \
+          ./mvnw versions:set \
               -DnewVersion="${{ steps.determine_version.outputs.release_version }}" \
               -DprocessAllModules=true \
               -DgenerateBackupPoms=false
@@ -151,14 +151,14 @@ jobs:
         run: |
            # The repo ID before '::' is a required-but-unused placeholder for Maven's deploy plugin.
            # 'njord:' is the Njord local-staging URL (uses the default RELEASE store template).
-           mvn -s ./.github/settings.xml clean deploy \
+           ./mvnw -s ./.github/settings.xml clean deploy \
                -DskipTests=false \
                -Prelease \
                -DaltDeploymentRepository=local-staging::njord:
 
       - name: Publish Release Artifacts to Maven Central Portal
         run: |
-           mvn -s ./.github/settings.xml njord:publish -Dpublisher=sonatype-cp
+           ./mvnw -s ./.github/settings.xml njord:publish -Dpublisher=sonatype-cp
 
       - name: Create Tag and GitHub Release
         uses: carlspring/release-action@0faba8fe09752647ce39a99589c3c7dc34f146a7 # v1.0.5
@@ -171,8 +171,8 @@ jobs:
 
       - name: Update POM Version to Next Development Version
         run: |
-          mvn versions:set -DnewVersion=${{ steps.determine_next_version.outputs.next_development_version }} -DprocessAllModules=true -DgenerateBackupPoms=false
-          # mvn -s ./.github/settings.xml clean deploy -DskipTests=false
+          ./mvnw versions:set -DnewVersion=${{ steps.determine_next_version.outputs.next_development_version }} -DprocessAllModules=true -DgenerateBackupPoms=false
+          # ./mvnw -s ./.github/settings.xml clean deploy -DskipTests=false
 
       - name: Update Gradle Integration Test Versions to Next Development Version
         run: |
