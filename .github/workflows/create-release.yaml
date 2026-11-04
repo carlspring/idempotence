@@ -137,10 +137,12 @@ jobs:
             -e "s|idempotence-gradle:[^\"]*\"|idempotence-gradle:${{ steps.determine_version.outputs.release_version }}\"|g" {} \;
 
       - name: Commit Release Version
+        id: commit_release
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git commit -am "Release version ${{ steps.determine_version.outputs.release_version }}"
+          echo "release_commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Build and Deploy Artifacts
         run: |
@@ -155,10 +157,13 @@ jobs:
         run: |
            mvn -s ./.github/settings.xml njord:publish -Dpublisher=sonatype-cp
 
-      - name: Create Git Tag
-        run: |
-          git tag ${{ steps.determine_version.outputs.release_version }}
-          git push origin ${{ steps.determine_version.outputs.release_version }}
+      - name: Create Tag and GitHub Release
+        uses: carlspring/release-action@0faba8fe09752647ce39a99589c3c7dc34f146a7 # v1.0.5
+        with:
+          tag: ${{ steps.determine_version.outputs.release_version }}
+          target: ${{ steps.commit_release.outputs.release_commit }}
+          prerelease: ${{ contains(steps.determine_version.outputs.release_version, '-') }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update POM Version to Next Development Version
         run: |
@@ -175,12 +180,3 @@ jobs:
         run: |
           git commit -am "Prepare for next development iteration"
           git push origin HEAD:${{ github.ref }}
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
-        with:
-          tag_name: ${{ steps.determine_version.outputs.release_version }}
-          name: ${{ steps.determine_version.outputs.release_version }}
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -11,4 +11,4 @@ run safely in parallel.
 You can find our documentation [here](https://carlspring.github.io/idempotence/).
 
 [![Maven Release Version](https://img.shields.io/maven-central/v/org.carlspring.testing.idempotence/idempotence-core)](https://repo.maven.apache.org/maven2/org/carlspring/testing/idempotence/idempotence-core/)
-[![GitHub Snapshot Version](https://img.shields.io/badge/snapshot-GitHub_Packages-blue)](https://github.com/carlspring/idempotence/packages)
+[![Maven Snapshot Version](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fcentral.sonatype.com%2Frepository%2Fmaven-snapshots%2Forg%2Fcarlspring%2Ftesting%2Fidempotence%2Fidempotence-core%2Fmaven-metadata.xml&label=snapshot)](https://central.sonatype.com/repository/maven-snapshots/org/carlspring/testing/idempotence/idempotence-core/)
