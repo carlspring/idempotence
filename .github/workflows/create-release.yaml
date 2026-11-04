@@ -142,7 +142,6 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git commit -am "Release version ${{ steps.determine_version.outputs.release_version }}"
-          git push origin HEAD:${{ github.ref }}
           echo "release_commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Build and Deploy Artifacts
@@ -163,6 +162,7 @@ jobs:
         with:
           tag: ${{ steps.determine_version.outputs.release_version }}
           target: ${{ steps.commit_release.outputs.release_commit }}
+          prerelease: ${{ contains(steps.determine_version.outputs.release_version, '-') }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update POM Version to Next Development Version
