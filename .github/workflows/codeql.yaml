@@ -57,7 +57,7 @@ jobs:
 
       - name: Autobuild
         if: env.java_changed == 'true'
-        run: mvn -B package --file pom.xml
+        run: ./mvnw -B package --file pom.xml
 
       - name: Perform CodeQL Analysis
         if: env.java_changed == 'true'

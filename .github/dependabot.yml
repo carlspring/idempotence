@@ -12,6 +12,10 @@ updates:
       interval: "daily"
     commit-message:
       prefix: deps(upgrade)
+    ignore:
+      # Njord fails to start on Maven 3.10.0 (null RepositorySystem); stay on 3.9.x until that is resolved
+      - dependency-name: "org.apache.maven:apache-maven"
+        versions: [">= 3.10.0"]
     groups:
       spring:
         patterns:
