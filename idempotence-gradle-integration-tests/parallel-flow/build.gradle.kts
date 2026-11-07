@@ -27,8 +27,8 @@ repositories {
 }
 
 dependencies {
-	testImplementation("org.carlspring.testing.idempotence:idempotence-core:1.0.1")
-	testImplementation("org.carlspring.testing.idempotence:idempotence-gradle:1.0.1")
+	testImplementation("org.carlspring.testing.idempotence:idempotence-core:1.0.2-SNAPSHOT")
+	testImplementation("org.carlspring.testing.idempotence:idempotence-gradle:1.0.2-SNAPSHOT")
 
 	testImplementation(enforcedPlatform("org.junit:junit-bom:6.1.3"))
 	testImplementation("org.junit.jupiter:junit-jupiter-api")
