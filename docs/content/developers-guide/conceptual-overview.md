@@ -94,6 +94,34 @@ target/test-resources/MavenBasicFunctionalityTest/testMultipleWithPatterns/foo.t
 
 At this point you need to make sure your tests look for the test resources in their isolated directories.
 
+Rather than hard-coding these paths, call `TestMethodService.getTestInvocationDetails()` from within the test method.
+It works out the current test class and method and returns a `TestInvocationDetails` whose
+`getPathToMethodTestResources()` resolves the isolated directory using the configured base directory and separator:
+
+```java
+import org.carlspring.testing.idempotence.util.TestInvocationDetails;
+
+import static org.carlspring.testing.idempotence.util.TestMethodService.getTestInvocationDetails;
+
+    @Test
+    @TestResources({ @TestResource(source = "classpath:/foo.txt"),
+                     @TestResource(source = "classpath*:/**/foo.txt")} )
+    void testMultipleWithPatterns()
+    {
+        TestInvocationDetails details = getTestInvocationDetails();
+
+        File testResource1 = new File(details.getPathToMethodTestResources(), "foo.txt");
+        File testResource2 = new File(details.getPathToMethodTestResources(), "nested/dir/foo.txt");
+
+        ...
+    }
+```
+
+!!! note
+
+    `getTestInvocationDetails()` resolves the method that called it. Call it directly from the test method;
+    if you call it from a helper method, it will return the helper's name instead.
+
 !!! tip
 
     The separator between the class name and the method name, the base directory, and other aspects of this behaviour

@@ -18,6 +18,20 @@ public class TestMethodService
     }
 
     /**
+     * Returns {@link TestInvocationDetails} for the method that called this one.
+     *
+     * @return the {@link TestInvocationDetails} for the current test method
+     */
+    public static TestInvocationDetails getTestInvocationDetails()
+    {
+        StackWalker.StackFrame caller = StackWalker.getInstance()
+                                                   .walk(frames -> frames.skip(1).findFirst())
+                                                   .orElseThrow();
+
+        return getTestInvocationDetails(caller.getClassName(), caller.getMethodName());
+    }
+
+    /**
      * Returns {@link TestInvocationDetails} for the test method that is currently being invoked,
      * based on the provided stack trace.
      *
@@ -29,13 +43,17 @@ public class TestMethodService
         // Get the current class and method name
         StackTraceElement currentMethod = invokingThreadStackTrace[1];
 
+        return getTestInvocationDetails(currentMethod.getClassName(), currentMethod.getMethodName());
+    }
+
+    private static TestInvocationDetails getTestInvocationDetails(String fullyQualifiedClassName,
+                                                                  String methodName)
+    {
         String className = IdempotencePropertiesService.getInstance()
                                                        .getIdempotenceProperties()
                                                        .useFullyQualifiedNamePrefixes() ?
-                           currentMethod.getClassName().replaceAll("\\.", "/") :
-                           currentMethod.getClassName().substring(currentMethod.getClassName().lastIndexOf(".") + 1);
-
-        String methodName = currentMethod.getMethodName();
+                           fullyQualifiedClassName.replaceAll("\\.", "/") :
+                           fullyQualifiedClassName.substring(fullyQualifiedClassName.lastIndexOf(".") + 1);
 
         TestInvocationDetails details = new TestInvocationDetails();
         details.setClassName(className);

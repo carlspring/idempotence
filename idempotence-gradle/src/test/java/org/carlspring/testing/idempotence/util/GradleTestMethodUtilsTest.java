@@ -21,7 +21,7 @@ class GradleTestMethodUtilsTest
     @Test
     void testMethodsDefault()
     {
-        TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
+        TestInvocationDetails details = getTestInvocationDetails();
 
         assertEquals("GradleTestMethodUtilsTest", details.getClassName());
         assertEquals("testMethodsDefault", details.getMethodName());
@@ -38,7 +38,7 @@ class GradleTestMethodUtilsTest
 
         try
         {
-            TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
+            TestInvocationDetails details = getTestInvocationDetails();
 
             assertEquals("org/carlspring/testing/idempotence/util/GradleTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithFQDNPath", details.getMethodName());
@@ -62,7 +62,7 @@ class GradleTestMethodUtilsTest
 
         try
         {
-            TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
+            TestInvocationDetails details = getTestInvocationDetails();
 
             assertEquals("GradleTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithHyphenSeparator", details.getMethodName());
