@@ -21,7 +21,7 @@ class MavenTestMethodUtilsTest
     @Test
     void testMethodsDefault()
     {
-        TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
+        TestInvocationDetails details = getTestInvocationDetails();
 
         assertEquals("MavenTestMethodUtilsTest", details.getClassName());
         assertEquals("testMethodsDefault", details.getMethodName());
@@ -37,7 +37,7 @@ class MavenTestMethodUtilsTest
 
         try
         {
-            TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
+            TestInvocationDetails details = getTestInvocationDetails();
 
             assertEquals("org/carlspring/testing/idempotence/util/MavenTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithFQDNPath", details.getMethodName());
@@ -61,7 +61,7 @@ class MavenTestMethodUtilsTest
 
         try
         {
-            TestInvocationDetails details = getTestInvocationDetails(Thread.currentThread().getStackTrace());
+            TestInvocationDetails details = getTestInvocationDetails();
 
             assertEquals("MavenTestMethodUtilsTest", details.getClassName());
             assertEquals("testMethodsWithHyphenSeparator", details.getMethodName());

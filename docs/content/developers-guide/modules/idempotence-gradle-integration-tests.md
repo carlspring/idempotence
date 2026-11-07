@@ -146,12 +146,14 @@ package org.carlspring.testing.idempotence;
 import org.carlspring.testing.idempotence.annotation.TestResource;
 import org.carlspring.testing.idempotence.annotation.TestResources;
 import org.carlspring.testing.idempotence.extension.TestResourceExtension;
+import org.carlspring.testing.idempotence.util.TestInvocationDetails;
 
 import java.io.File;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import static org.carlspring.testing.idempotence.util.TestMethodService.getTestInvocationDetails;
 
 @ExtendWith(TestResourceExtension.class)
 class MyNewScenarioTest
@@ -161,7 +163,9 @@ class MyNewScenarioTest
     @TestResources(@TestResource(source = "classpath:/my-file.txt"))
     void testSingleFile()
     {
-        File testResource = new File("build/test-resources/MyNewScenarioTest-testSingleFile/my-file.txt");
+        TestInvocationDetails details = getTestInvocationDetails();
+
+        File testResource = new File(details.getPathToMethodTestResources(), "my-file.txt");
 
         Assertions.assertTrue(testResource.exists(), "Test resource file should exist!");
     }
@@ -173,6 +177,8 @@ class MyNewScenarioTest
 
     The isolated test resource directory follows the pattern:
     `build/test-resources/${TestClassName}-${testMethodName}/`
+    (with a hyphen separator configured). `getPathToMethodTestResources()` resolves it for you, so the test does
+    not need to hard-code it.
 
 ### 7. Create the Groovy Driver Script
 
